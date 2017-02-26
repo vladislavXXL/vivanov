@@ -10,9 +10,12 @@ package ru.job4j;
 */
 
 public class Calculate {
+
 	/**
-	* Вывод на консоль Hello world 
+	* Вывод на консоль Hello world.
+	* @param args - args
 	*/
+
 	public static void main(String[] args) {
 		System.out.println("Hello World");
 	}
