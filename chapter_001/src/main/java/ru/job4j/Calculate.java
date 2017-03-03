@@ -1,8 +1,8 @@
 package ru.job4j;
 
 /**
-* Class Класс для вывода Hello world.
-* @author Petr Arsentev (mailto:parsentev@yandex.ru)
+* Class showing Hello world.
+* @author vivanov
 * @since 26.02.2017
 * @version 1
 *
@@ -12,7 +12,7 @@ package ru.job4j;
 public class Calculate {
 
 	/**
-	* Вывод на консоль Hello world.
+	* Console Hello world showing.
 	* @param args - args
 	*/
 

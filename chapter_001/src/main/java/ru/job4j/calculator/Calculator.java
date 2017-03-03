@@ -1,6 +1,6 @@
 package ru.job4j.calculator;
 /**
-* Class Класс Calculator.
+* Class Calculator.
 * @author vivanov
 * @since 28.02.2017
 * @version 1
@@ -9,16 +9,16 @@ package ru.job4j.calculator;
 */
 public class Calculator {
 	/**
-	* Результат.
+	* Calculator operation result.
 	* @param args - args
 	*/
 
 	private double result;
 
 	/**
-	* Простой калькулятор.
-	* @param first - первое число
-	* @param second - второе число
+	* Addition operation.
+	* @param first - first parameter
+	* @param second - second parameter
 	*/
 
 	public void add(double first, double second) {
@@ -26,34 +26,34 @@ public class Calculator {
 	}
 
 	/**
-	* Простой калькулятор.
-	* @param first - первое число
-	* @param second - второе число
+	* Subtract operation.
+	* @param first - first parameter
+	* @param second - second parameter
 	*/
 	public void subtract(double first, double second) {
 		this.result = first - second;
 	}
 
 	/**
-	* Простой калькулятор.
-	* @param first - первое число
-	* @param second - второе число
+	* Division operation.
+	* @param first - first parameter
+	* @param second - second parameter
 	*/
 	public void div(double first, double second) {
 		this.result = first / second;
 	}
 
 	/**
-	* Простой калькулятор.
-	* @param first - первое число
-	* @param second - второе число
+	* Multiplication operation.
+	* @param first - first parameter
+	* @param second - second parameter
 	*/
 	public void multiple(double first, double second) {
 		this.result = first * second;
 	}
 
 	/**
-	* Метод вывода результата.
+	* Getting result.
 	* @return result
 	*/
 	public double getResult() {

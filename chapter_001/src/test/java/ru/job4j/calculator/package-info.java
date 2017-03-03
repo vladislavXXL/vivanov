@@ -1,7 +1,7 @@
 /**
-* Тесты для заданий job4j.
+* job4j 001 part tests.
 *
-* @author Petr Arsentev (mailto:parsentev@yandex.ru)
+* @author vivanov
 * @version $Id$
 * @since 0.1
 */

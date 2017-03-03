@@ -1,7 +1,7 @@
 /**
-* Пакет выполнения заданий по обучению job4j.
+* package job4j course.
 *
-* @author Petr Arsentev (mailto:parsentev@yandex.ru)
+* @author vivanov
 * @version $Id$
 * @since 0.1
 */
