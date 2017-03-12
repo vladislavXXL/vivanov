@@ -34,4 +34,16 @@ public class MaxTest {
 		int expected = 8;
 		assertThat(result, is(expected));
 	}
+
+	/**
+	* Test max with three parameter.
+	* Test with 3, 6 and 19
+	*/
+	@Test
+	public void whenAddThreeAndSixAndNineteen() {
+		Max obj = new Max();
+		int result = obj.max(3, 6, 19);
+		int expected = 19;
+		assertThat(result, is(expected));
+	}
 }

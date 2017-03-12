@@ -18,4 +18,16 @@ public class Max {
 	public int max(int first, int second) {
 		return (first > second) ? first : second;
 	}
+
+	/**
+	* Getting maximum of three parameter.
+	* @param first - first parameter
+	* @param second - second parameter
+	* @param third - third parameter
+	* @return max result
+	*/
+	public int max(int first, int second, int third) {
+		int max1 = max(first, second);
+		return max(max1, third);
+	}
 }
