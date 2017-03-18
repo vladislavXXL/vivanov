@@ -14,7 +14,6 @@ public class Paint {
 	* @return result
 	*/
 	 public String piramid(int h) {
-		int half = (int) Math.ceil((2.0 * h - 1.0) / 2.0) - 1;
 		int elemTotal = 2 * h - 1;
 		StringBuilder str = new StringBuilder();
 		int pos = 0; //spaces position range
