@@ -22,9 +22,7 @@ public class TurnTest {
 		int[] arr = {1, 2, 3, 4, 5};
 		int[] result = obj.back(arr);
 		int[] expected = {5, 4, 3, 2, 1};
-		for (int i = 0; i < result.length; i++) {
-			assertThat(result[i], is(expected[i]));
-		}
+		assertThat(result, is(expected));
 	}
 
 	/**
@@ -36,8 +34,6 @@ public class TurnTest {
 		int[] arr = {4, 1, 6, 2};
 		int[] result = obj.back(arr);
 		int[] expected = {2, 6, 1, 4};
-		for (int i = 0; i < result.length; i++) {
-			assertThat(result[i], is(expected[i]));
-		}
+		assertThat(result, is(expected));
 	}
 }
