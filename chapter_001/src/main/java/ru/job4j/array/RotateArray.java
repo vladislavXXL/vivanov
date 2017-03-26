@@ -16,13 +16,15 @@ public class RotateArray {
 	public int[][] rotate(int[][] array) {
 		int temp = 0;
 		int len = array.length;
-		int endPoint = len - 2;
-        for (int i = len; i >= len - endPoint; i--) {
-            temp = array[0][len - i];
-            array[0][len - i] = array[i - 1][0];
-            array[i - 1][0] = array[len - 1][i - 1];
-            array[len - 1][i - 1] = array[len - i][len - 1];
-            array[len - i][len - 1] = temp;
+        for (int i = 0; i <= len / 2 - 1; i++) {
+            int endPoint = len - i - 2;
+            for (int j = len - i; j >= len - endPoint; j--) {
+                temp = array[i][len - j];
+                array[i][len - j] = array[j - 1][i];
+                array[j - 1][i] = array[len - 1 - i][j - 1];
+                array[len - 1 - i][j - 1] = array[len - j][len - 1 - i];
+                array[len - j][len - 1 - i] = temp;
+            }
         }
 		return array;
 	}
