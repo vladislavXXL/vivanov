@@ -33,7 +33,7 @@ public class RotateArrayTest {
 		RotateArray obj = new RotateArray();
 		int[][] arr = {{1, 2}, {3, 4}};
 		int[][] result = obj.rotate(arr);
-		int[][] expected = {{4, 3}, {2, 1}};
+		int[][] expected = {{3, 1}, {4, 2}};
 		assertThat(result, is(expected));
 	}
 
