@@ -25,7 +25,7 @@ public class RotateArrayTest {
 		assertThat(result, is(expected));
 	}
 
-		/**
+	/**
 	* Test array {{1, 2}, {3, 4}}.
 	*/
 	@Test
@@ -36,5 +36,4 @@ public class RotateArrayTest {
 		int[][] expected = {{3, 1}, {4, 2}};
 		assertThat(result, is(expected));
 	}
-
 }
