@@ -15,33 +15,29 @@ public class ArrayMergeSort {
 	* @return result array (merged and sorted).
 	*/
 	public int[] merge(int[] ar1, int[] ar2) {
-		int temp = 0;
-		int total = ar1.length + ar2.length;
-		for (int i = 0; i < ar1.length; i++) {
-			for (int j = 0; j < ar2.length; j++) {
-                if (ar1[i] > ar2[j]) {
-                    temp = ar1[i];
-                    ar1[i] = ar2[j];
-                    ar2[j] = temp;
-                }
+        int[] result = new int[ar1.length + ar2.length];
+        int count = 0;
+        int i = 0;
+        int j = 0;
+
+        while (i != ar1.length && j != ar2.length) {
+            if (ar1[i] <= ar2[j]) {
+                result[count] = ar1[i];
+                count++;
+                i++;
+            } else if (ar2[j] <= ar1[i]) {
+                result[count] = ar2[j];
+                count++;
+                j++;
             }
         }
-        int[] result = new int[total];
-        for (int i = 0; i < ar1.length; i++) {
-            result[i] = ar1[i];
+
+        if (i < ar1.length) {
+            System.arraycopy(ar1, i, result, count, ar1.length - i);
+        } else if (j < ar2.length) {
+            System.arraycopy(ar2, j, result, count, ar2.length - j);
         }
-        for (int i = 0; i < ar2.length; i++) {
-            for (int j = 0; j < ar2.length; j++) {
-                if (ar2[i] > ar2[j]) {
-                    temp = ar2[i];
-                    ar2[i] = ar2[j];
-                    ar2[j] = temp;
-                }
-            }
-        }
-        for (int i = ar1.length; i < total; i++) {
-            result[i] = ar2[total - i - 1];
-        }
+
 		return result;
 	}
 }
