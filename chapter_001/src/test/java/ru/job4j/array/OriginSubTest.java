@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 public class OriginSubTest {
 
 	/**
-	* Test line: "This is full line". Subline: "is full".
+	* Test line: "This is full line". Subline: "line".
 	*/
 	@Test
 	public void whenCompareTwoLines() {
