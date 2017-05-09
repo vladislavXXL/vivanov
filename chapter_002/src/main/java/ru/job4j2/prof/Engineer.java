@@ -17,7 +17,7 @@ public class Engineer extends Profession {
      * @return project name
      */
     public String developProject(Company company) {
-        return "The project for " + company.getName() + " is " +  " " + company.getProjectName();
+        return String.format("The project for %s is %s", company.getName(), company.getProjectName());
     }
 
     /**
@@ -26,7 +26,7 @@ public class Engineer extends Profession {
      * @return review to the project
      */
     public String analyzeProject(Company company) {
-        return "This is a review to a project " + company.getProjectName();
+        return String.format("This is a review to a project %s", company.getProjectName());
     }
 
     /**
@@ -36,6 +36,6 @@ public class Engineer extends Profession {
      * @return result requirements
      */
     public String addRequirements(Company company, String str) {
-        return company.getRequirements() + " " + str;
+        return String.format("%s %s", company.getRequirements(), str);
     }
 }

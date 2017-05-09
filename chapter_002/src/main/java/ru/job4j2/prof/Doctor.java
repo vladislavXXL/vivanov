@@ -15,7 +15,7 @@ public class Doctor extends Profession {
      * @return result of survey
      */
     public String makeSurvey(Patient patient) {
-        return "This is the result of survey " + patient.getName() + " " + patient.getLastName();
+        return String.format("This is the result of survey %s %s", patient.getName(), patient.getLastName());
     }
 
     /**
@@ -24,7 +24,7 @@ public class Doctor extends Profession {
      * @return recipe
      */
     public String writingRecipe(Patient patient) {
-       return "This is the recipe for " + patient.getName() + " " + patient.getLastName();
+        return String.format("This is the recipe for %s %s", patient.getName(), patient.getLastName());
     }
 
     /**
@@ -34,6 +34,6 @@ public class Doctor extends Profession {
      * @return result recipe
      */
     public String addToRecipe(String recipe, String medicine) {
-        return recipe + " ," + medicine;
+        return String.format("%s , %s", recipe, medicine);
     }
 }

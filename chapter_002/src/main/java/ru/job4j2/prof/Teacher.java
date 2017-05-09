@@ -21,8 +21,7 @@ public class Teacher extends Profession {
      * @return result after lesson
      */
     public String teachStudent(Student student) {
-        int iq = student.getIq();
-        return "After lesson iq of the student " + student.getLastName() + " " + student.getName() + " is " + iq;
+        return String.format("After lesson iq of the student %s %s is %d", student.getLastName(), student.getName(), student.getIq());
     }
 
     /**
@@ -31,6 +30,6 @@ public class Teacher extends Profession {
      * @return result line with the phone number
      */
     public String callParents(Student student) {
-        return "Parents phone number of student " + student.getName() + " is " + student.getPhone();
+        return String.format("Parents phone number of student %s %s is %d ", student.getLastName(), student.getName(), student.getPhone());
     }
 }
