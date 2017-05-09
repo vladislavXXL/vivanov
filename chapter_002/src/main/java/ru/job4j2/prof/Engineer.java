@@ -38,4 +38,5 @@ public class Engineer extends Profession {
     public String addRequirements(Company company, String str) {
         return String.format("%s %s", company.getRequirements(), str);
     }
+
 }

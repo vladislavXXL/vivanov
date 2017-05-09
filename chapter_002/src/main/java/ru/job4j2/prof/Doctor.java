@@ -36,4 +36,5 @@ public class Doctor extends Profession {
     public String addToRecipe(String recipe, String medicine) {
         return String.format("%s , %s", recipe, medicine);
     }
+
 }

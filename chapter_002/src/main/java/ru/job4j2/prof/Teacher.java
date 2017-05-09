@@ -32,4 +32,5 @@ public class Teacher extends Profession {
     public String callParents(Student student) {
         return String.format("Parents phone number of student %s %s is %d ", student.getLastName(), student.getName(), student.getPhone());
     }
+
 }
