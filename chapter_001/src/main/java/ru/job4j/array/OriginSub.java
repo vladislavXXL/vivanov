@@ -1,21 +1,21 @@
 package ru.job4j.array;
 
 /**
-* Class OriginSub to compare two String lines.
-* @author vivanov
-* @version 1
-* @since 17.04.2017
-*/
+ * Class OriginSub to compare two String lines.
+ * @author vivanov
+ * @version 1
+ * @since 17.04.2017
+ */
 
 public class OriginSub {
 
-	/**
-	* Method contains() to compare two lines.
-	* @param origin - first line.
-	* @param sub - second line.
-	* @return result.
-	*/
-	public boolean contains(String origin, String sub) {
+    /**
+     * Method contains() to compare two lines.
+     * @param origin - first line.
+     * @param sub - second line.
+     * @return result.
+     */
+    public boolean contains(String origin, String sub) {
         boolean result = false;
         int inc = 0;
 
@@ -36,5 +36,5 @@ public class OriginSub {
             inc = 0;
         }
         return result;
-	}
+    }
 }
