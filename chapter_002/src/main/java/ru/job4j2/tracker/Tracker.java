@@ -29,23 +29,10 @@ public class Tracker {
      * @param item - item to update
      */
     public void update(Item item) {
-        for (Item el: this.items) {
-            if (el.getId().equals(item.getId())) {
-                if (item.getId() != null) {
-                    el.setId(item.getId());
-                }
-                if (item.getName() != null) {
-                    el.setName(item.getName());
-                }
-                if (item.getDesc() != null) {
-                    el.setDesc(item.getDesc());
-                }
-                if (item.getCreated() != 0) {
-                    el.setCreated(item.getCreated());
-                }
-                if (item.getComments() != null) {
-                    el.setComments(item.getComments());
-                }
+        for (int i = 0; i < this.items.length; i++) {
+            if (item.getId().equals(this.items[i].getId())) {
+                this.items[i] = item;
+                break;
             }
         }
     }
@@ -55,9 +42,12 @@ public class Tracker {
      * @param item - item to delete
      */
     public void delete(Item item) {
-        for (Item el: this.items) {
-            if (item.equals(el)) {
-                el = null;
+        for (int i = 0; i < this.items.length; i++) {
+            if (item.getId().equals(this.items[i].getId())) {
+                this.items[i] = null;
+                System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
+                this.items[this.items.length - 1] = null;
+                break;
             }
         }
     }

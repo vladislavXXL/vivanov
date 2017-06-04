@@ -20,9 +20,6 @@ public class Item {
     /** field creation time.*/
     private long created;
 
-    /** field comments array.*/
-    private String[] comments;
-
     /**
      * Class Item constructor without parametrs.
      */
@@ -35,14 +32,12 @@ public class Item {
      * @param name - name
      * @param desc - description
      * @param created - creation time
-     * @param comments - some comments
      */
-    public Item(String id, String name, String desc, long created, String[] comments) {
+    public Item(String id, String name, String desc, long created) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.created = created;
-        this.comments = comments;
     }
 
     /**
@@ -74,13 +69,6 @@ public class Item {
         return this.created;
     }
 
-    /** Field comments getter.
-     * @return comments
-     */
-    public String[] getComments() {
-        return this.comments;
-    }
-
     /** Field id setter.
      * @param id - Item id
      */
@@ -107,12 +95,5 @@ public class Item {
      */
     public void setCreated(long created) {
         this.created = created;
-    }
-
-    /** Field comments setter.
-     * @param comments - additional comments for Item
-     */
-    public void setComments(String[] comments) {
-        this.comments = comments;
     }
 }
