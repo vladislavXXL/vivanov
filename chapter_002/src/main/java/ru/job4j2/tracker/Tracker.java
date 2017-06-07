@@ -56,8 +56,25 @@ public class Tracker {
      * Method to get all items.
      * @return array of all items
      */
-    public Item[] findAll() {
+    public Item[] getAll() {
         return this.items;
+    }
+
+    /**
+     * Method to find all not null items.
+     * @return array of items
+     */
+    public Item[] findAll() {
+        int arrSize = 0;
+        for (int i = 0; i < this.items.length; i++) {
+            if (this.items[i] == null) {
+                arrSize = i;
+                break;
+            }
+        }
+        Item[] itemValues = new Item[arrSize];
+        System.arraycopy(this.items, 0, itemValues, 0, arrSize);
+        return itemValues;
     }
 
     /**
@@ -67,8 +84,8 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         int inc = 0;
-        for (Item el: this.items) {
-            if (el.getName().equals(key)) {
+        for (int i = 0; i < this.items.length; i++) {
+            if (key == this.items[i].getName()) {
                 inc++;
             }
         }
@@ -76,9 +93,9 @@ public class Tracker {
         if (inc > 0) {
             result = new Item[inc];
             inc = 0;
-            for (Item el : this.items) {
-                if (el.getName().equals(key)) {
-                    result[inc] = el;
+            for (int i = 0; i < this.items.length; i++) {
+                if (key.equals(this.items[i].getName())) {
+                    result[inc] = this.items[i];
                     inc++;
                 }
             }
@@ -93,10 +110,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-
-        for (Item el: this.items) {
-            if (el.getId().equals(id)) {
-                result = el;
+        for (int i = 0; i < this.items.length; i++) {
+            if (id == this.items[i].getId()) {
+                result = this.items[i];
             }
         }
         return result;
