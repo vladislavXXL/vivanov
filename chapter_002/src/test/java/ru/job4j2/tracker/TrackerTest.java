@@ -22,7 +22,9 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("0", "test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.getAll()[0], is(item));
+        Item item2 = new Item("0", "test1", "testDescription", 123L);
+        tracker.add(item2);
+        assertThat(tracker.getAll()[1], is(item2));
     }
 
     /**
@@ -70,22 +72,6 @@ public class TrackerTest {
     }
 
     /**
-     * Test findByName method.
-     */
-    @Test
-    public void whenFindByNameThenReturnItems() {
-        Tracker tracker = new Tracker();
-        Item item1 = new Item("0", "test1", "testDesc1", 123L);
-        tracker.add(item1);
-        Item item2 = new Item("1", "test2", "testDesc2", 124L);
-        tracker.add(item2);
-        Item item3 = new Item("2", "test3", "testDesc3", 125L);
-        tracker.add(item3);
-        assertThat(tracker.findByName("test1"), is(item1));
-    }
-
-
-    /**
      * Test findById method.
      */
     @Test
@@ -98,5 +84,21 @@ public class TrackerTest {
         Item item3 = new Item("2", "test3", "testDesc3", 125L);
         tracker.add(item3);
         assertThat(tracker.findById("2"), is(item3));
+    }
+
+    /**
+     * Test findByName method.
+     */
+    @Test
+    public void whenFindByNameThenReturnItems() {
+        Tracker tracker = new Tracker();
+        Item item1 = new Item("0", "name", "testDesc1", 123L);
+        tracker.add(item1);
+        Item item2 = new Item("1", "name", "testDesc2", 124L);
+        tracker.add(item2);
+        Item item3 = new Item("2", "methodName", "testDesc3", 125L);
+        tracker.add(item3);
+        Item[] result = {item1, item2};
+        assertThat(tracker.findByName("name"), is(result));
     }
 }

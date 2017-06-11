@@ -1,5 +1,7 @@
 package ru.job4j2.tracker;
 
+import java.util.Arrays;
+
 /**
  * Class Tracker.
  * @author vivanov
@@ -44,12 +46,13 @@ public class Tracker {
     public void delete(Item item) {
         for (int i = 0; i < this.items.length; i++) {
             if (item.getId().equals(this.items[i].getId())) {
-                this.items[i] = null;
+                //this.items[i] = null;
                 System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
                 this.items[this.items.length - 1] = null;
                 break;
             }
         }
+        this.index--;
     }
 
     /**
@@ -65,42 +68,14 @@ public class Tracker {
      * @return array of items
      */
     public Item[] findAll() {
-        int arrSize = 0;
+        int inc = 0;
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i] == null) {
-                arrSize = i;
+                inc = i;
                 break;
             }
         }
-        Item[] itemValues = new Item[arrSize];
-        System.arraycopy(this.items, 0, itemValues, 0, arrSize);
-        return itemValues;
-    }
-
-    /**
-     * Method to find items by name.
-     * @param key - name of item
-     * @return result - result array with items
-     */
-    public Item[] findByName(String key) {
-        int inc = 0;
-        for (int i = 0; i < this.items.length; i++) {
-            if (key == this.items[i].getName()) {
-                inc++;
-            }
-        }
-        Item[] result = null;
-        if (inc > 0) {
-            result = new Item[inc];
-            inc = 0;
-            for (int i = 0; i < this.items.length; i++) {
-                if (key.equals(this.items[i].getName())) {
-                    result[inc] = this.items[i];
-                    inc++;
-                }
-            }
-        }
-        return result;
+        return Arrays.copyOf(this.items, inc);
     }
 
     /**
@@ -111,10 +86,28 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         for (int i = 0; i < this.items.length; i++) {
-            if (id == this.items[i].getId()) {
+            if (id.equals(this.items[i].getId())) {
                 result = this.items[i];
+                break;
             }
         }
         return result;
+    }
+
+    /**
+     * Method to find items by name.
+     * @param key - name of item
+     * @return result - result array with items
+     */
+    public Item[] findByName(String key) {
+        int inc = 0;
+        Item[] result = new Item[this.items.length];
+        for (Item el: this.items) {
+            if (el.getName().equals(key)) {
+                result[inc] = el;
+                inc++;
+            }
+        }
+        return Arrays.copyOf(result, inc);
     }
 }
