@@ -99,4 +99,5 @@ public class StartUI {
         Input input = new ConsoleInput();
         new StartUI(input).init();
     }
+
 }

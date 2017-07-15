@@ -16,4 +16,5 @@ public class StartUITest {
         Input input = new StubInput(new String[] {"Create stub task"});
         new StartUI(input).init();
     }
+
 }

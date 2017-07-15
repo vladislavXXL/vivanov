@@ -6,6 +6,7 @@ package ru.job4j2.tracker;
  * @version 1
  * @since 09.07.2017
  */
+
 public interface Input {
     /**
      * Method ask to make console input.
