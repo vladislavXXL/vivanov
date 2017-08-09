@@ -32,6 +32,9 @@ public class StartUI {
     /** field instance of class Input. */
     private Input input;
 
+    /** field tracker. */
+    private Tracker tracker;
+
     /** field menu - displays available operations to run. */
     private String[] menu = {
             "0. Add new item",
@@ -46,9 +49,11 @@ public class StartUI {
     /**
      * Class StartUI constructor.
      * @param input - instance of class Input.
+     * @param tracker - instance of class Tracker.
      */
-    public StartUI(Input input) {
+    public StartUI(Input input, Tracker tracker) {
         this.input = input;
+        this.tracker = tracker;
     }
 
     /**
@@ -133,16 +138,26 @@ public class StartUI {
     }
 
     /**
+     * Handler to print good buy message when exit.
+     */
+    public void exitMenuHandler() {
+        System.out.println("Good buy!");
+    }
+
+    /**
      * Method init to run class StartUI - main menu.
      */
     public void init() {
-        Tracker tracker = new Tracker();
+        //Tracker tracker = new Tracker();
         boolean bQuit = false;
         while (!bQuit) {
             showStartMenu();
-            String request = input.ask("Select: ");
+            //String request = input.ask("Select: ");
+            String request = input.ask("Process running");
             int iRequest = Integer.valueOf(request);
+            //System.out.println(iRequest);
             if (iRequest == EXIT) {
+                exitMenuHandler();
                 bQuit = true;
             } else if (iRequest == ADD) {
                 addHandler(tracker);
@@ -164,9 +179,9 @@ public class StartUI {
      * Method main to run execution of the program.
      * @param args - java key words and operators.
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Input input = new ConsoleInput();
         new StartUI(input).init();
-    }
+    }*/
 
 }

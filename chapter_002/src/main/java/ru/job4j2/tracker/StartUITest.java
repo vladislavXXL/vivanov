@@ -13,8 +13,9 @@ public class StartUITest {
      * @param args - java key words and operators.
      */
     public static void main(String[] args) {
+        Tracker tracker = new Tracker();
         Input input = new StubInput(new String[] {"Create stub task"});
-        new StartUI(input).init();
+        new StartUI(input, tracker).init();
     }
 
 }
