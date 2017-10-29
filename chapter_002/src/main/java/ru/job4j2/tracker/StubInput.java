@@ -31,4 +31,15 @@ public class StubInput implements Input {
         return answers[position++];
     }
 
+    /**
+     * Method ask to make console input with two parameters.
+     * @param question - ask user what operation to do
+     * @param ranges - to make sure input value belongs to this range
+     * @return result of console input
+     */
+    public int ask(String question, int[] ranges) {
+        //throw new UnsupportedOperationException("Unsupported operation.");
+        return -1;
+    }
+
 }

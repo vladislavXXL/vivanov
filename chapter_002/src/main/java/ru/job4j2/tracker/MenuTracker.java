@@ -54,6 +54,9 @@ public class MenuTracker {
     /** Field array of all available user actions. */
     private UserAction[] actions = new UserAction[7];
 
+    /** Field ranges contains keys of menu for switch the operation. */
+    private int[] ranges = new int[this.actions.length];
+
     /**
      * Class MenuTracker constructor.
      * @param input - instance of class Input.
@@ -64,7 +67,7 @@ public class MenuTracker {
         this.tracker = tracker;
     }
 
-    /** Method to fill field array actions. */
+    /** Method to fill fields array actions and array ranges contains the keys of menu. */
     public void fillActions() {
         this.actions[0] = this.new AddItem();
         this.actions[1] = new MenuTracker.ShowItems();
@@ -73,6 +76,18 @@ public class MenuTracker {
         this.actions[4] = this.new FindById();
         this.actions[5] = this.new FindByName();
         this.actions[6] = this.new Exit();
+
+        for (int i = 0; i < ranges.length; i++) {
+            ranges[i] = i;
+        }
+    }
+
+    /**
+     * Getter to get available keys of menu.
+     * @return field ranges
+     */
+    public int[] getRanges() {
+        return this.ranges;
     }
 
     /**
