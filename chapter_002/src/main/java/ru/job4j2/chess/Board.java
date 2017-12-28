@@ -17,22 +17,21 @@ public class Board {
 
     /**
      * Field figures getter.
-     * @param x x-coordinate
-     * @param y y-coordinate
      * @return figure object
+     * @param position - Cell of the figure position
+     * @return
      */
-    public Figure getFigures(int x, int y) {
-        return figures[x][y];
+    public Figure getFigure(Cell position) {
+        return figures[position.getX()][position.getY()];
     }
 
     /**
      * Field figures setter.
-     * @param x - x-coordinate
-     * @param y - y-coordinate
-     * @param figure - object of class Figure to set at Cell with the x and the y coordinates
+     * @param position - Cell of the figure position.
+     * @param figure - result figrue
      */
-    public void setFigures(int x, int y, Bishop figure) {
-        this.figures[x][y] = figure;
+    public void setFigure(Cell position, Bishop figure) {
+        this.figures[position.getX()][position.getY()] = figure;
     }
 
     /**
@@ -47,19 +46,12 @@ public class Board {
     boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException, FigureNotFoundException {
 
         boolean result;
-        boolean isFigureAvailable = false;
 
-        for (int i = 0; i < figures.length; i++) {
-            for (int j = 0; j < figures.length; j++) {
-                if (figures[i][j] != null && figures[i][j].getPosition().getX() == source.getX() && figures[i][j].getPosition().getY() == source.getY()) {
-                    isFigureAvailable = true;
-                }
-            }
-        }
+        Figure figureCheck = this.getFigure(source);
 
-        if (isFigureAvailable) {
+        if (figureCheck != null) {
 
-            Cell[] wayCellsArr = figures[source.getX()][source.getY()].way(source, dest);
+            Cell[] wayCellsArr = figures[source.getX()][source.getY()].way(dest);
             for (Cell el: wayCellsArr) {
                 if (figures[el.getX()][el.getY()] != null) {
                     throw new OccupiedWayException("The cell (" + el.getX() + ", " + el.getY() + ")" +  " is occupied already.");

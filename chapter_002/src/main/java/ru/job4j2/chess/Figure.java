@@ -31,12 +31,11 @@ public abstract class Figure {
 
     /**
      * Method to get cells which belongs to the distance figure moves.
-     * @param source - start position of the figure
      * @param dest - final position of the figure
      * @return array of all valid cells on distance between start and finial
      * @throws ImpossibleMoveException throws when some kind of movement is impossible.
      */
-    abstract Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException;
+    abstract Cell[] way(Cell dest) throws ImpossibleMoveException;
 
     /**
      * Method to make new figure with defined position in dest parameter.

@@ -21,10 +21,10 @@ public class ChessTest {
         Board board = new Board();
         Cell cellBishop = new Cell(2, 0);
         Bishop bishop = new Bishop(cellBishop);
-        board.setFigures(2, 0, bishop);
+        board.setFigure(cellBishop, bishop);
         Cell destCell = new Cell(6, 4);
         board.move(cellBishop, destCell);
-        Figure result = board.getFigures(6, 4);
+        Figure result = board.getFigure(destCell);
         assertThat(result.getPosition().getX(), is(destCell.getX()));
         assertThat(result.getPosition().getY(), is(destCell.getY()));
     }

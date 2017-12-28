@@ -20,50 +20,24 @@ public class Bishop extends Figure {
 
     /**
      * Method to get cells which belongs to the distance figure moves.
-     * @param source - start position of the figure
      * @param dest - final position of the figure
      * @return array of all valid cells on distance between start and finial
      * @throws ImpossibleMoveException
      */
     @Override
-    Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
+    Cell[] way(Cell dest) throws ImpossibleMoveException {
+        Cell source = this.getPosition();
+        int deltaX = source.getX() - dest.getX();
+        int deltaY = source.getY() - dest.getY();
 
-        int deltaX = Math.abs(source.getX() - dest.getX());
-        int deltaY = Math.abs(source.getY() - dest.getY());
-        if (deltaX == deltaY) {
+        if (Math.abs(deltaX) == Math.abs(deltaY)) {
+            Cell[] result = new Cell[Math.abs(deltaX)];
 
-            Cell[] result = new Cell[deltaX];
-
-            if (source.getX() > dest.getX() && source.getY() > dest.getY()) {
-                int inc = 0;
-                for (int i = 1; i <= deltaX; i++) {
-                    result[inc++] = new Cell(source.getX() - i, source.getY() - i);
-                }
-            }
-
-            if (source.getX() > dest.getX() && source.getY() < dest.getY()) {
-                int inc = 0;
-                for (int i = 1; i <= deltaX; i++) {
-                    result[inc++] = new Cell(source.getX() - i, source.getY() + i);
-                }
-            }
-
-            if (source.getX() < dest.getX() && source.getY() < dest.getY()) {
-                int inc = 0;
-                for (int i = 1; i <= deltaX; i++) {
-                    result[inc++] = new Cell(source.getX() + i, source.getY() + i);
-                }
-            }
-
-            if (source.getX() < dest.getX() && source.getY() > dest.getY()) {
-                int inc = 0;
-                for (int i = 1; i <= deltaX; i++) {
-                    result[inc++] = new Cell(source.getX() + i, source.getY() - i);
-                }
+            for (int i = 0; i < Math.abs(deltaX); i++) {
+                result[i] = new Cell(source.getX() + (deltaX < 0 ? 1 : -1) * (i + 1), source.getY() + (deltaY < 0 ? 1 : -1) * (i + 1));
             }
 
             return result;
-
         } else {
             throw new ImpossibleMoveException("Move figures to this position is impossible.");
         }
