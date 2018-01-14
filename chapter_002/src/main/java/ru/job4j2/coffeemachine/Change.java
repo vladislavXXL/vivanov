@@ -23,40 +23,39 @@ public class Change {
 
         if (value < price) {
             throw new NotEnoughMoney("Money is not enough to buy this coffee.");
-        } else {
+        }
 
-            int changeAmount = value - price;
-            int inc = 0;
-            double nod = 0;
-            int index = 0;
+        int changeAmount = value - price;
+        int inc = 0;
+        double nod = 0;
+        int index = 0;
 
-            int[] arr = new int[1];
+        int[] arr = new int[1];
 
-            while (changeAmount > 0) {
+        while (changeAmount > 0) {
 
-                double minNod = Double.POSITIVE_INFINITY;
-                for (int i = 0; i < this.notes.length; i++) {
-                    nod = changeAmount / (double) this.notes[i];
-                    if (nod < minNod && nod >= 1) {
-                        index = i;
-                        minNod = nod;
-                    }
+            double minNod = Double.POSITIVE_INFINITY;
+            for (int i = 0; i < this.notes.length; i++) {
+                nod = changeAmount / (double) this.notes[i];
+                if (nod < minNod && nod >= 1) {
+                    index = i;
+                    minNod = nod;
                 }
-
-                int[] arrA = {this.notes[index]};
-                int[] arrB = new int[inc + 1];
-                System.arraycopy(arr, 0, arrB, 0, inc + 1);
-                arr = new int[arrB.length + 1];
-                System.arraycopy(arrB, 0, arr, 0, arrB.length);
-                System.arraycopy(arrA, 0, arr, inc, 1);
-                inc++;
-                changeAmount -= this.notes[index];
             }
 
-            int[] result = new int[arr.length - 1];
-            System.arraycopy(arr, 0, result, 0, arr.length - 1);
-
-            return result;
+            int[] arrA = {this.notes[index]};
+            int[] arrB = new int[inc + 1];
+            System.arraycopy(arr, 0, arrB, 0, inc + 1);
+            arr = new int[arrB.length + 1];
+            System.arraycopy(arrB, 0, arr, 0, arrB.length);
+            System.arraycopy(arrA, 0, arr, inc, 1);
+            inc++;
+            changeAmount -= this.notes[index];
         }
+
+        int[] result = new int[arr.length - 1];
+        System.arraycopy(arr, 0, result, 0, arr.length - 1);
+
+        return result;
     }
 }
