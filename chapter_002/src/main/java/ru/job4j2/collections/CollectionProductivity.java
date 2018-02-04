@@ -12,20 +12,6 @@ import java.util.Random;
  */
 public class CollectionProductivity {
 
-/*
-    Collection collection;
-
-    */
-/**
-     * Constructor of class CollectionProductivity.
-     * @param collection - can be LinkedList, ArrayList or TreeSet
-     *//*
-
-    public void CollectionProductivity(Collection collection) {
-        this.collection = collection;
-    }
-*/
-
     /**
      * Method add is used to put elements into collection.
      * @param collection - can be LinkedList, ArreyList or TreeSet
@@ -63,12 +49,9 @@ public class CollectionProductivity {
 
         long start = System.currentTimeMillis();
         Iterator<String> itr = collection.iterator();
-        while (itr.hasNext()) {
+        while (itr.hasNext() && amount-- >= 0) {
             itr.next();
-            if (amount >= 0) {
-                itr.remove();
-                amount--;
-            }
+            itr.remove();
         }
 
         long end = System.currentTimeMillis();
