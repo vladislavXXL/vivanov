@@ -36,7 +36,7 @@ public class CollectionProductivityTest {
         CollectionProductivity obj = new CollectionProductivity();
         long timeAdd = obj.add(al, 100000);
         System.out.println("ArrayList Add: " + timeAdd);
-        long timeDelete = obj.delete(al,50000);
+        long timeDelete = obj.delete(al, 50000);
         System.out.println("ArrayList Delete: " + timeDelete);
     }
 
