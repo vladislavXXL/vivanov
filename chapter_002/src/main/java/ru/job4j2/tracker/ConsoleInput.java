@@ -1,5 +1,6 @@
 package ru.job4j2.tracker;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -29,7 +30,7 @@ public class ConsoleInput implements Input {
      * @param ranges - to make sure input value belongs to this range
      * @return result of console input
      */
-    public int ask(String question, int[] ranges) {
+    public int ask(String question, List<Integer> ranges) {
         int key = Integer.valueOf(this.ask(question));
         boolean isRange = false;
         for (int value : ranges) {

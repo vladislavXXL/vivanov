@@ -17,10 +17,10 @@ public class StubInputTest {
      */
     @Test
     public void whenAddNewItem() {
-            StubInput input = new StubInput(new String[]{"0", "1", "name1", "desc1", "6"});
+        StubInput input = new StubInput(new String[]{"0", "1", "name1", "desc1", "6"});
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("name1"));
+        assertThat(tracker.getAll().get(0).getName(), is("name1"));
     }
 
     /**

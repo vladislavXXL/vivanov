@@ -1,5 +1,7 @@
 package ru.job4j2.tracker;
 
+import java.util.List;
+
 /**
  * Class Input.
  * @author vivanov
@@ -22,5 +24,5 @@ public interface Input {
      * @param range - to make sure input value belongs to this range
      * @return result of console input
      */
-    int ask(String question, int[] range);
+    int ask(String question, List<Integer> range);
 }

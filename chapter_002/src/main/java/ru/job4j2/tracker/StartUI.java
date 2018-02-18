@@ -15,8 +15,8 @@ public class StartUI {
     private Tracker tracker;
 
     /**
-     * Class StartUI constructor.
      * @param input - instance of class Input.
+     * Class StartUI constructor.
      * @param tracker - instance of class Tracker.
      */
     public StartUI(Input input, Tracker tracker) {
@@ -44,7 +44,7 @@ public class StartUI {
                 //todo
             }
             public String info() {
-                return  String.format("%s. %s", this.key(), "Delete the item");
+                0return  String.format("%s. %s", this.key(), "Delete the item");
             }
         };
 
@@ -61,11 +61,9 @@ public class StartUI {
      * Method main to run execution of the program.
      * @param args - java key words and operators.
      */
-
     public static void main(String[] args) {
         Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
     }
-
 }

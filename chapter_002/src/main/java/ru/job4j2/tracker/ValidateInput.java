@@ -1,5 +1,7 @@
 package ru.job4j2.tracker;
 
+import java.util.List;
+
 /**
  * Class ValidateInput to check input parameters.
  * @author vivanov
@@ -13,7 +15,7 @@ public class ValidateInput extends ConsoleInput {
      * @param ranges - to make sure input value belongs to this range
      * @return result to run menu or run exception handler
      */
-    public int ask(String question, int[] ranges) {
+    public int ask(String question, List<Integer> ranges) {
         boolean notValid = true;
         int value = -1;
         do {

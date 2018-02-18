@@ -1,6 +1,7 @@
 package ru.job4j2.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class Tracker.
@@ -11,10 +12,7 @@ import java.util.Arrays;
 public class Tracker {
 
     /** Field items that belongs to tracker.*/
-    private Item[] items = new Item[100];
-
-    /** Field index - counter of items.*/
-    private int index = 0;
+    private List<Item> items = new ArrayList<Item>();
 
     /**
      * Method to add item.
@@ -22,7 +20,7 @@ public class Tracker {
      * @return item
      */
     public Item add(Item item) {
-        this.items[index++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -31,9 +29,9 @@ public class Tracker {
      * @param item - item to update
      */
     public void update(Item item) {
-        for (int i = 0; i < this.items.length; i++) {
-            if (item.getId().equals(this.items[i].getId())) {
-                this.items[i] = item;
+        for (int i = 0; i < this.items.size(); i++) {
+            if (item.getId().equals(this.items.get(i).getId())) {
+                this.items.set(i, item);
                 break;
             }
         }
@@ -44,20 +42,19 @@ public class Tracker {
      * @param item - item to delete
      */
     public void delete(Item item) {
-        for (int i = 0; i < this.items.length; i++) {
-            if (item.getId().equals(this.items[i].getId())) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
+        for (int i = 0; i < this.items.size(); i++) {
+            if (item.getId().equals(this.items.get(i).getId())) {
+                this.items.remove(i);
                 break;
             }
         }
-        this.index--;
     }
 
     /**
      * Method to get all items.
      * @return array of all items
      */
-    public Item[] getAll() {
+    public List<Item> getAll() {
         return this.items;
     }
 
@@ -65,15 +62,15 @@ public class Tracker {
      * Method to find all not null items.
      * @return array of items
      */
-    public Item[] findAll() {
+    public List<Item> findAll() {
         int inc = 0;
-        for (int i = 0; i < this.items.length; i++) {
-            if (this.items[i] == null) {
+        for (int i = 0; i < this.items.size(); i++) {
+            if (this.items.get(i) == null) {
                 inc = i;
                 break;
             }
         }
-        return Arrays.copyOf(this.items, inc);
+        return this.items.subList(0, inc + 1);
     }
 
     /**
@@ -83,9 +80,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < this.items.length; i++) {
-            if (id.equals(this.items[i].getId())) {
-                result = this.items[i];
+        for (int i = 0; i < this.items.size(); i++) {
+            if (id.equals(this.items.get(i).getId())) {
+                result = this.items.get(i);
                 break;
             }
         }
@@ -97,15 +94,13 @@ public class Tracker {
      * @param key - name of item
      * @return result - result array with items
      */
-    public Item[] findByName(String key) {
-        int inc = 0;
-        Item[] result = new Item[this.items.length];
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<Item>();
         for (Item el: this.items) {
             if (el != null && el.getName().equals(key)) {
-                result[inc] = el;
-                inc++;
+                result.add(el);
             }
         }
-        return Arrays.copyOf(result, inc);
+        return result;
     }
 }

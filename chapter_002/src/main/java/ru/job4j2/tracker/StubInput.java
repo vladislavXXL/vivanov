@@ -1,5 +1,7 @@
 package ru.job4j2.tracker;
 
+import java.util.List;
+
 /**
  * Class StubInput.
  * @author vivanov
@@ -37,7 +39,7 @@ public class StubInput implements Input {
      * @param ranges - to make sure input value belongs to this range
      * @return result of console input
      */
-    public int ask(String question, int[] ranges) {
+    public int ask(String question, List<Integer> ranges) {
         //throw new UnsupportedOperationException("Unsupported operation.");
         return -1;
     }
