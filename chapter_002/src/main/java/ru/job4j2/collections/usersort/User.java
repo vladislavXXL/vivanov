@@ -14,6 +14,11 @@ public class User implements Comparable<User> {
     /** field age.*/
     private Integer age;
 
+    /**
+     * Constructor of class User.
+     * @param name - name of user
+     * @param age - user's age
+     */
     public User(String name, Integer age) {
         this.name = name;
         this.age = age;
@@ -73,6 +78,7 @@ public class User implements Comparable<User> {
      * @throws ClassCastException   if the specified object's type prevents it
      *                              from being compared to this object.
      */
+
     @Override
     public int compareTo(User o) {
         return this.age.compareTo(o.getAge());
@@ -80,9 +86,9 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "User{"
+                + "name='" + name + '\''
+                + ", age=" + age
+                + '}';
     }
 }
