@@ -58,16 +58,17 @@ public class EvenNumbersIterator implements Iterable {
          */
         @Override
         public boolean hasNext() {
-            if (this.array.length < 1) {
-                return false;
-            }
-            for (int j = i; j < this.array.length; j++) {
-                if (this.array[j] % 2 == 0) {
-                    i = j;
-                    return true;
+            boolean result = false;
+            if (this.array.length > 0) {
+                for (int j = i; j < this.array.length; j++) {
+                    if (this.array[j] % 2 == 0) {
+                        i = j;
+                        result = true;
+                        break;
+                    }
                 }
             }
-            return false;
+            return result;
         }
 
         /**
