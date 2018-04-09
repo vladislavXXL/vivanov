@@ -63,14 +63,11 @@ public class MatrixIterator implements Iterable {
          */
         @Override
         public boolean hasNext() {
-            if (this.valuesItr.length < 1) {
-                return false;
-            }
-            if (j == this.valuesItr[i].length) {
+            if (this.valuesItr.length > 0 && j == this.valuesItr[i].length) {
                 j = 0;
                 i++;
             }
-            return this.valuesItr.length > i && this.valuesItr[i].length > j;
+            return this.valuesItr.length > i && this.valuesItr[i].length > j && this.valuesItr.length > 0;
         }
 
         /**
