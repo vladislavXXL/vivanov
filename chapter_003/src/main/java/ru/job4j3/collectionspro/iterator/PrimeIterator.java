@@ -58,17 +58,18 @@ public class PrimeIterator implements Iterable {
          */
         @Override
         public boolean hasNext() {
-            if (this.array.length < 1) {
-                return false;
-            }
-            for (int j = i; j < this.array.length; j++) {
-                BigInteger value = BigInteger.valueOf(this.array[j]);
-                if (value.isProbablePrime(this.array[j])) {
-                    i = j;
-                    return true;
+            boolean result = false;
+            if (this.array.length > 0) {
+                for (int j = i; j < this.array.length; j++) {
+                    BigInteger value = BigInteger.valueOf(this.array[j]);
+                    if (value.isProbablePrime(this.array[j])) {
+                        i = j;
+                        result = true;
+                        break;
+                    }
                 }
             }
-            return false;
+            return result;
         }
 
         /**
