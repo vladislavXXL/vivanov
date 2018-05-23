@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * @version 1
  * @since 23.04.2018
  */
-public class SimpleArray<T extends Number> implements Iterable<T> {
+public class SimpleArray<T> implements Iterable<T> {
 
     /** Array field.*/
     private Object[] t;
