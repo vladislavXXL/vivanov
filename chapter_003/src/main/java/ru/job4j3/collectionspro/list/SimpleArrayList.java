@@ -1,0 +1,83 @@
+package ru.job4j3.collectionspro.list;
+
+/**
+ * Class SimpleArrayList.
+ * @author vivanov
+ * @version 1
+ * @since 26.05.2018
+ * @param <E> type parameter
+ */
+public class SimpleArrayList<E> {
+
+    /** Field size.*/
+    private int size;
+
+    /** First element.*/
+    private Node<E> first;
+
+    /**
+     * Method to add new date into the first position of a data list.
+     * @param date new date
+     */
+    public void add(E date) {
+        Node<E> newLink = new Node<>(date);
+        newLink.next = this.first;
+        this.first = newLink;
+        this.size++;
+    }
+
+    /**
+     * Method to delete first element in the data list.
+     * @return deleted element value
+     */
+    public E delete() {
+        Node<E> elementToDelete = this.first;
+        this.first = this.first.next;
+        this.size--;
+        return elementToDelete.date;
+    }
+
+    /**
+     * Method to get element value by index.
+     * @param index index of an element
+     * @return element
+     */
+    public E get(int index) {
+        Node<E> result = this.first;
+        for (int i = 0; i < index; i++) {
+            result = result.next;
+        }
+        return result.date;
+    }
+
+    /**
+     * Method to get collection size.
+     * @return collection size
+     */
+    public int getSize() {
+        return this.size;
+    }
+
+    /**
+     * Class Node is used for data store.
+     * @param <E> type parametr
+     * @author vivanov
+     * @version 1
+     * @since 26.05.2018
+     */
+    private static class Node<E> {
+        /** Some data in E type parameter type.*/
+        private E date;
+
+        /** Next element for current element.*/
+        private Node<E> next;
+
+        /**
+         * Class Node constructor.
+         * @param date current element data value
+         */
+        Node(E date) {
+            this.date = date;
+        }
+    }
+}
