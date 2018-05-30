@@ -55,4 +55,16 @@ public class SimpleArrayListTest {
         obj.delete();
         assertThat("line3", is(obj.get(0)));
     }
+
+    /**
+     * Method to check delete by index.
+     */
+    @Test
+    public void checkDeleteByIndex() {
+        String result = obj.delete(1);
+        assertThat(result, is("line3"));
+        String newEl = obj.get(1);
+        assertThat(newEl, is("line2"));
+
+    }
 }

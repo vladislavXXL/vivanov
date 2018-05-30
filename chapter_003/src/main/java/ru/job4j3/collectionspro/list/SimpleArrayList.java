@@ -31,10 +31,26 @@ public class SimpleArrayList<E> {
      * @return deleted element value
      */
     public E delete() {
-        Node<E> elementToDelete = this.first;
+        Node<E> el = this.first;
         this.first = this.first.next;
         this.size--;
-        return elementToDelete.date;
+        return el.date;
+    }
+
+    /**
+     * Method to delete element by index.
+     * @param index index of element
+     * @return deleted element value
+     */
+    public E delete(int index) {
+        Node<E> result = this.first;
+        for (int i = 0; i < index - 1; i++) {
+            result = result.next;
+        }
+        E elDel = result.next.date;
+        result.next = result.next.next;
+        this.size--;
+        return elDel;
     }
 
     /**
