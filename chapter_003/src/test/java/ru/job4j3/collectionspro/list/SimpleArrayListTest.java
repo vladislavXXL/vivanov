@@ -65,6 +65,5 @@ public class SimpleArrayListTest {
         assertThat(result, is("line3"));
         String newEl = obj.get(1);
         assertThat(newEl, is("line2"));
-
     }
 }

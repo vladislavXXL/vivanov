@@ -31,10 +31,7 @@ public class SimpleArrayList<E> {
      * @return deleted element value
      */
     public E delete() {
-        Node<E> el = this.first;
-        this.first = this.first.next;
-        this.size--;
-        return el.date;
+        return delete(0);
     }
 
     /**
@@ -44,11 +41,20 @@ public class SimpleArrayList<E> {
      */
     public E delete(int index) {
         Node<E> result = this.first;
-        for (int i = 0; i < index - 1; i++) {
-            result = result.next;
+        E elDel = null;
+        if (index > 0) {
+            for (int i = 1; i < index - 1; i++) {
+                result = result.next;
+                if (index == 0) {
+                    result = this.first;
+                }
+            }
+            elDel = result.next.date;
+            result.next = result.next.next;
+        } else {
+            elDel = result.date;
+            this.first = result.next;
         }
-        E elDel = result.next.date;
-        result.next = result.next.next;
         this.size--;
         return elDel;
     }
