@@ -61,6 +61,28 @@ public class ContainerLinked<E> implements Iterable<E> {
     }
 
     /**
+     * Method to delete element by index.
+     * @param index index of element to delete
+     * @return deleted element value
+     */
+    public E delete(int index) {
+        Node<E> result = this.first;
+        E el = null;
+        if (index < 1) {
+            el = result.data;
+            this.first = result.next;
+        } else {
+            for (int i = 0; i < index - 1; i++) {
+                result = result.next;
+            }
+            el = result.next.data;
+            result.next = result.next.next;
+        }
+        this.size--;
+        return el;
+    }
+
+    /**
      * Class Node to store data.
      * @param <E> type parameter
      */

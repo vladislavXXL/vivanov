@@ -42,18 +42,15 @@ public class SimpleArrayList<E> {
     public E delete(int index) {
         Node<E> result = this.first;
         E elDel = null;
-        if (index > 0) {
-            for (int i = 1; i < index - 1; i++) {
+        if (index < 1) {
+            elDel = result.date;
+            this.first = result.next;
+        } else {
+            for (int i = 0; i < index - 1; i++) {
                 result = result.next;
-                if (index == 0) {
-                    result = this.first;
-                }
             }
             elDel = result.next.date;
             result.next = result.next.next;
-        } else {
-            elDel = result.date;
-            this.first = result.next;
         }
         this.size--;
         return elDel;

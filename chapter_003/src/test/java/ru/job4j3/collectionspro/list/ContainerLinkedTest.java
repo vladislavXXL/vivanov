@@ -59,6 +59,15 @@ public class ContainerLinkedTest {
     }
 
     /**
+     * Method to check delete by index.
+     */
+    @Test
+    public void checkDeleteByIndex() {
+        assertThat(obj.delete(0), is("value1"));
+        assertThat(obj.get(0), is("value2"));
+    }
+
+    /**
      * Method to check ConcurrentModificationException if container structure was modified.
      */
     @Test(expected = ConcurrentModificationException.class)
