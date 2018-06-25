@@ -57,12 +57,7 @@ public class NodeTest {
      */
     @Test
     public void checkHasCycle() {
-        boolean result = Node.hasCycle(this.first);
+        boolean result = new Node().hasCycle(this.first);
         assertThat(result, is(true));
     }
-
-
-
-
-
 }

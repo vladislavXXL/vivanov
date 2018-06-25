@@ -16,7 +16,14 @@ public class Node<T> {
     private Node<T> next;
 
     /**
-     * Class Node constructor.
+     * Class Node constructor without parameters.
+     */
+    public Node() {
+
+    }
+
+    /**
+     * Class Node constructor with parameter value.
      * @param value value
      */
     public Node(T value) {
@@ -36,11 +43,11 @@ public class Node<T> {
      * @param first first element of a list
      * @return result true if cycle exist, else false
      */
-    public static boolean hasCycle(Node first) {
+    public boolean hasCycle(Node first) {
         boolean result = false;
         Node st = first;
         Node nd = first;
-        while (!result && nd.next != null) {
+        while (!result && nd.next != null && nd.next.next != null) {
             st = st.next;
             nd = nd.next.next;
             if (st != null && nd == st) {
