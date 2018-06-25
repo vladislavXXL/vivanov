@@ -15,14 +15,13 @@ import static org.hamcrest.core.Is.is;
 public class SimpleStackTest {
 
     /** Field SimpleStack container.*/
-    private SimpleStack<String> cnt;
+    private SimpleStack<String> cnt = new SimpleStack<>();
 
     /**
      * Create and initialize Stack Container.
      */
     @Before
     public void setUp() {
-        this.cnt = new SimpleStack<>();
         this.cnt.push("Value1");
         this.cnt.push("Value2");
         this.cnt.push("Value3");

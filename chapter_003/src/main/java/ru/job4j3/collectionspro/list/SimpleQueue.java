@@ -10,14 +10,7 @@ package ru.job4j3.collectionspro.list;
 public class SimpleQueue<T> {
 
     /** Field ContainerLinked container queue.*/
-    private ContainerLinked<T> queue;
-
-    /**
-     * SimpleQueue constructor.
-     */
-    public SimpleQueue() {
-        queue = new ContainerLinked();
-    }
+    private ContainerLinked<T> queue = new ContainerLinked();
 
     /**
      * Method poll returns value in queue order.

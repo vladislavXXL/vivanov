@@ -15,14 +15,13 @@ import static org.junit.Assert.assertThat;
 public class SimpleQueueTest {
 
     /** Field SimpleQueue queue container.*/
-    private SimpleQueue<String> queue;
+    private SimpleQueue<String> queue = new SimpleQueue<>();
 
     /**
      * Method to create and initialize SimpleQueue queue container.
      */
     @Before
     public void setUp() {
-        queue = new SimpleQueue<>();
         queue.push("Value1");
         queue.push("Value2");
         queue.push("Value3");

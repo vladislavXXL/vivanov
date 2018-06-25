@@ -10,14 +10,7 @@ package ru.job4j3.collectionspro.list;
 public class SimpleStack<T> {
 
     /** Field Stack container.*/
-    private SimpleArrayList<T> stack;
-
-    /**
-     * SimpleStack constructor.
-     */
-    public SimpleStack() {
-        stack = new SimpleArrayList<>();
-    }
+    private SimpleArrayList<T> stack = new SimpleArrayList<>();
 
     /**
      * Method poll returns last inserted value.
