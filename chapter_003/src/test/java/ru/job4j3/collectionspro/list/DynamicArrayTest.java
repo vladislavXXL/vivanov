@@ -50,6 +50,14 @@ public class DynamicArrayTest {
     }
 
     /**
+     * Method to check contains.
+     */
+    @Test
+    public void checkContains() {
+        assertThat(box.contains("two"), is(true));
+    }
+
+    /**
      * Method to check iterator.
      */
     @Test

@@ -48,6 +48,22 @@ public class DynamicArray<E> implements Iterable<E> {
     }
 
     /**
+     * Method to check if element exist in current array.
+     * @param value to check
+     * @return result true or false
+     */
+    public boolean contains(E value) {
+        boolean result = false;
+        for (int i = 0; i < this.size; i++) {
+            if (value.equals(this.container[i])) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
      * Method to get element by index.
      * @param index index of array element to get
      * @return element
