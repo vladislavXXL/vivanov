@@ -59,6 +59,15 @@ public class ContainerLinkedTest {
     }
 
     /**
+     * Method to check contains operation.
+     */
+    @Test
+    public void checkContains() {
+        assertThat(obj.contains("value2"), is(true));
+        assertThat(obj.contains("value99"), is(false));
+    }
+
+    /**
      * Method to check delete by index.
      */
     @Test

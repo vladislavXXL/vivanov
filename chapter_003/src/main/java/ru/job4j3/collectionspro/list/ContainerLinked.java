@@ -83,6 +83,23 @@ public class ContainerLinked<E> implements Iterable<E> {
     }
 
     /**
+     * Used to check if container contains some value.
+     * @param value to find
+     * @return result true or false
+     */
+    public boolean contains(E value) {
+        boolean result = false;
+        Node<E> el = this.first;
+        for (int i = 0; i < this.size; i++) {
+            if (el.data.equals(value)) {
+                result = true;
+            }
+            el = el.next;
+        }
+        return result;
+    }
+
+    /**
      * Class Node to store data.
      * @param <E> type parameter
      */
