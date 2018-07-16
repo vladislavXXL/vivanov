@@ -29,4 +29,16 @@ public class User {
         this.children = children;
         this.birthday = birthday;
     }
+
+    /**
+     * Method hashCode.
+     * @return int value
+     */
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + children;
+        result = 31 * result + birthday.hashCode();
+        return result;
+    }
 }
