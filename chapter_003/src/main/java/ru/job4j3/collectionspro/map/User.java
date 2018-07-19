@@ -34,7 +34,6 @@ public class User {
      * Method hashCode.
      * @return int value
      */
-    /*
     @Override
     public int hashCode() {
         int result = name.hashCode();
@@ -42,7 +41,6 @@ public class User {
         result = 31 * result + birthday.hashCode();
         return result;
     }
-    */
 
     /**
      * Method equals.
