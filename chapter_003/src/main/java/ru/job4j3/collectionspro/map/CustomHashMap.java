@@ -159,9 +159,8 @@ public class CustomHashMap<K, V> implements Iterable<K> {
         public K next() {
             if (hasNext() && array[this.itrIndex] != null) {
                 return (K) array[this.itrIndex++].getKey();
-            } else {
-                throw new NoSuchElementException();
             }
+            throw new NoSuchElementException();
         }
     }
 
