@@ -1,6 +1,9 @@
 package ru.job4j3.collectionspro.tree;
 
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -39,5 +42,18 @@ public class TreeTest {
                 tree.findBy(7).isPresent(),
                 is(false)
         );
+    }
+
+    /**
+     * Check if duplicate is not available to add.
+     * @throws Exception
+     */
+    @Test
+    public void whenAddDuplicateChildToAnotherParent() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.add(1, 2);
+        tree.add(2, 2);
+        List<Node<Integer>> arrNode2 = tree.findBy(2).get().leaves();
+        assertThat(arrNode2.size(), is(0));
     }
 }

@@ -33,26 +33,9 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     public boolean add(E parent, E child) {
         Optional<Node<E>> parentNode = this.findBy(parent);
         boolean result = false;
-        if (parentNode.isPresent() && checkDuplicates(parentNode.get(), child)) {
+        if (parentNode.isPresent() && !findBy(child).isPresent()) {
             parentNode.get().add(new Node<>(child));
             result = true;
-        }
-        return result;
-    }
-
-    /**
-     * This method is check if tree contains duplicates.
-     * @param parent parent node
-     * @param child child node
-     * @return result true or false
-     */
-    private boolean checkDuplicates(Node<E> parent, E child) {
-        boolean result = true;
-        for (Node<E> el: parent.leaves()) {
-            if (el.equals(child)) {
-                result = false;
-                break;
-            }
         }
         return result;
     }
