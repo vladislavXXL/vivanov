@@ -51,9 +51,19 @@ public class TreeTest {
     @Test
     public void whenAddDuplicateChildToAnotherParent() {
         Tree<Integer> tree = new Tree<>(1);
-        tree.add(1, 2);
-        tree.add(2, 2);
-        List<Node<Integer>> arrNode2 = tree.findBy(2).get().leaves();
+        tree.add(1, 55);
+        tree.add(55, 1);
+        List<Node<Integer>> arrNode2 = tree.findBy(55).get().leaves();
         assertThat(arrNode2.size(), is(0));
+    }
+
+    /**
+     * Check if parent node is not exist in the tree.
+     */
+    @Test
+    public void whenParentNodeNotExist() {
+        Tree<Integer> tree = new Tree<>(1);
+        boolean result = tree.add(3, 4);
+        assertThat(result, is(false));
     }
 }
