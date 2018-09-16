@@ -66,4 +66,25 @@ public class TreeTest {
         boolean result = tree.add(3, 4);
         assertThat(result, is(false));
     }
+
+    /**
+     * Check if tree is binary.
+     */
+    @Test
+    public void checkIfTreeIsBinary() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(2, 4);
+        tree.add(3, 5);
+        tree.add(3, 6);
+        tree.add(6, 7);
+
+        boolean result = tree.isBinary();
+        assertThat(result, is(true));
+
+        tree.add(3, 8);
+        result = tree.isBinary();
+        assertThat(result, is(false));
+    }
 }
