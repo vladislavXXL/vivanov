@@ -3,6 +3,7 @@ package ru.job4j3.collectionspro;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -33,16 +34,18 @@ public class StoreTest {
      */
     @Before
     public void init() {
-        this.previous.add(new Store.User(1, "Valera"));
-        this.previous.add(new Store.User(2, "Vasiliy"));
-        this.previous.add(new Store.User(3, "Vladimir"));
-        this.previous.add(new Store.User(4, "Viktor"));
-
-        this.current.add(new Store.User(1, "Valera"));
-        this.current.add(new Store.User(2, "Vasya"));
-        this.current.add(new Store.User(3, "Vova"));
-        this.current.add(new Store.User(5, "Vartan"));
-        this.current.add(new Store.User(6, "Vagan"));
+        this.previous = Arrays.asList(
+                new Store.User(1, "Valera"),
+                new Store.User(2, "Vasiliy"),
+                new Store.User(3, "Vladimir"),
+                new Store.User(4, "Viktor")
+        );
+        this.current = Arrays.asList(
+                new Store.User(2, "Vasya"),
+                new Store.User(3, "Vova"),
+                new Store.User(5, "Vartan"),
+                new Store.User(6, "Vagan")
+        );
 
         this.statResult = obj.diff(this.previous, this.current);
     }
@@ -68,6 +71,6 @@ public class StoreTest {
      */
     @Test
     public void checkDeletedUsers() {
-        assertThat(this.statResult.getDeletedUsers(), is(1));
+        assertThat(this.statResult.getDeletedUsers(), is(2));
     }
 }

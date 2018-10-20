@@ -1,6 +1,8 @@
 package ru.job4j3.collectionspro;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class Store.
@@ -17,36 +19,34 @@ public class Store {
      * @return class Info with statistics
      */
     Info diff(List<User> previous, List<User> current) {
+        /** result value.*/
         Info result = new Info();
+        /** Edited users counter.*/
+        int countEdited = 0;
+        /** Deleted users counter.*/
+        int countDeleted = 0;
 
-        /** Get new users.*/
-        int countNew = 0;
-        for (User el: current) {
-            if (!previous.contains(el)) {
-                countNew++;
+        Map<Integer, String> mapcur = new HashMap<>();
+        for (User user: current) {
+            mapcur.put(user.getId(), user.getName());
+        }
+
+        for (User user: previous) {
+            if (mapcur.containsKey(user.getId())) {
+                if (!mapcur.get(user.getId()).equals(user.getName())) {
+                    countEdited++;
+                    mapcur.remove(user.getId());
+                }
+            } else {
+                countDeleted++;
+                mapcur.remove(user.getId());
             }
         }
-        result.setNewUsers(countNew);
 
-        /** Get edited users.*/
-        int countEdit = 0;
-        int index = 0;
-        for (User el: current) {
-            if (previous.contains(el) && !el.getName().equals(previous.get(index).getName())) {
-                countEdit++;
-            }
-            index++;
-        }
-        result.setEditedUsers(countEdit);
+        result.setNewUsers(mapcur.size());
+        result.setEditedUsers(countEdited);
+        result.setDeletedUsers(countDeleted);
 
-        /** Get deleted users.*/
-        int countDel = 0;
-        for (User el: previous) {
-            if (!current.contains(el)) {
-                countDel++;
-            }
-        }
-        result.setDeletedUsers(countDel);
         return result;
     }
 
@@ -71,7 +71,7 @@ public class Store {
          * @return new users quantity
          */
         public int getNewUsers() {
-            return newUsers;
+            return this.newUsers;
         }
 
         /**
@@ -79,7 +79,7 @@ public class Store {
          * @return edited users quantity
          */
         public int getEditedUsers() {
-            return editedUsers;
+            return this.editedUsers;
         }
 
         /**
@@ -87,7 +87,7 @@ public class Store {
          * @return deleted users quantity
          */
         public int getDeletedUsers() {
-            return deletedUsers;
+            return this.deletedUsers;
         }
 
         /**
@@ -139,55 +139,11 @@ public class Store {
         }
 
         /**
-         * Method equals override.
-         * @param o
-         * @return result
-         */
-/*
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            User user = (User) o;
-
-            if (id != user.id) return false;
-            return name != null ? name.equals(user.name) : user.name == null;
-        }
-*/
-
-        @Override
-        public boolean equals(Object o) {
-            boolean result = false;
-            if (this == o && o != null && getClass() == o.getClass())  {
-                result = true;
-            }
-
-            User user = (User) o;
-
-            if (id == user.id) {
-                result = true;
-            }
-            return result;
-        }
-
-        /**
-         * Method hashCode override.
-         * @return result
-         */
-        @Override
-        public int hashCode() {
-            int result = id;
-            result = 31 * result + (name != null ? name.hashCode() : 0);
-            return result;
-        }
-
-        /**
          * Id getter.
          * @return id
          */
         public int getId() {
-            return id;
+            return this.id;
         }
 
         /**
@@ -195,7 +151,7 @@ public class Store {
          * @return name
          */
         public String getName() {
-            return name;
+            return this.name;
         }
     }
 }
