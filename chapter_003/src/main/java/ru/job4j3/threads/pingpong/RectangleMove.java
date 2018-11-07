@@ -26,29 +26,16 @@ public class RectangleMove implements Runnable {
      */
     @Override
     public void run() {
-        boolean isBorder = false;
+        int delta = 1;
         while (true) {
-            if (!isBorder) {
-                this.rect.setX(this.rect.getX() + 1);
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (this.rect.getX() == 300) {
-                    isBorder = true;
-                }
+            if (this.rect.getX() >= 300 || this.rect.getX() <= 0) {
+                delta *= -1;
             }
-            while (isBorder) {
-                this.rect.setX(this.rect.getX() - 1);
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (this.rect.getX() == 0) {
-                    isBorder = false;
-                }
+            this.rect.setX(this.rect.getX() + delta);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
