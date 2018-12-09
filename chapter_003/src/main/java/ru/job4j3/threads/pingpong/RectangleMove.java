@@ -27,15 +27,15 @@ public class RectangleMove implements Runnable {
     @Override
     public void run() {
         int delta = 1;
-        while (true) {
-            if (this.rect.getX() >= 300 || this.rect.getX() <= 0) {
-                delta *= -1;
-            }
-            this.rect.setX(this.rect.getX() + delta);
+        while (!Thread.currentThread().isInterrupted()) {
             try {
+                if (this.rect.getX() >= 300 || this.rect.getX() <= 0) {
+                    delta *= -1;
+                }
+                this.rect.setX(this.rect.getX() + delta);
                 Thread.sleep(50);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }
