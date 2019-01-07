@@ -61,6 +61,7 @@ public class UserStorageTest {
 
     /**
      * Test transfer between two users.
+     * @throws Exception exception with message
      */
     @Test
     public void testTransfer() throws Exception {
@@ -69,6 +70,9 @@ public class UserStorageTest {
         assertThat(str.getAmountById(5), is(5600));
     }
 
+    /**
+     * Method to check delete operation.
+     */
     @Test
     public void testUserDelete() {
         assertThat(str.delete(userToDelete), is(true));

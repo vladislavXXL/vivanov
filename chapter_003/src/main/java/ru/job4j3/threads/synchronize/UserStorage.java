@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  * @author v.ivanov
  * @version 1
  * @since 24.12.2018
+ * @param <T> type parameter
  */
 @ThreadSafe
 public class UserStorage<T extends User> {
@@ -21,10 +22,18 @@ public class UserStorage<T extends User> {
     @GuardedBy("this")
     private Set<T> storage;
 
+    /**
+     * Method to get storage with users.
+     * @return set of users
+     */
     public synchronized Set<T> getStorage() {
         return this.storage;
     }
 
+    /**
+     * Constructor of UserStorage class.
+     * @param storage list of users to add into the storage
+     */
     public UserStorage(List<T> storage) {
         this.storage = new HashSet<>(storage);
     }
@@ -55,6 +64,7 @@ public class UserStorage<T extends User> {
      * Method to update user info.
      * @param user to update
      * @return result of the operation
+     * @throws Exception exception with message
      */
     public synchronized boolean update(T user) throws Exception {
         Set<T> toUpdate = this.storage.stream()
@@ -77,17 +87,26 @@ public class UserStorage<T extends User> {
         return this.storage.remove(user);
     }
 
+    /**
+     * Method used to make transfers between two users.
+     * @param fromId first user
+     * @param toId second user
+     * @param amount amount to transfer
+     * @throws Exception exception with message
+     */
     public synchronized void transfer(int fromId, int toId, int amount) throws Exception {
         Set<T> setIds = this.storage.stream()
                 .filter(e -> e.getId() == fromId || e.getId() == toId)
                 .collect(Collectors.toSet());
         if (setIds.size() == 2) {
-            this.storage.stream()
-                    .filter(e -> e.getId() == fromId)
-                    .forEach(e -> e.setAmount(e.getAmount() - amount));
-            this.storage.stream()
-                    .filter(e -> e.getId() == toId)
-                    .forEach(e -> e.setAmount(e.getAmount() + amount));
+            for (T user: this.storage) {
+                if (user.getId() == fromId) {
+                    user.setAmount(user.getAmount() - amount);
+                }
+                if (user.getId() == toId) {
+                    user.setAmount(user.getAmount() + amount);
+                }
+            }
         } else {
             throw new Exception("You have entered wrong user's id values.");
         }

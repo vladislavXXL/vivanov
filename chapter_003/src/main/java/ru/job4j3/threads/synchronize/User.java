@@ -42,7 +42,7 @@ public class User {
     }
 
     /**
-     * Id setter
+     * Id setter.
      * @param id value of id
      */
     public void setId(int id) {
