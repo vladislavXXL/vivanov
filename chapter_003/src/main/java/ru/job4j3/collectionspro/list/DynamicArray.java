@@ -1,5 +1,8 @@
 package ru.job4j3.collectionspro.list;
 
+import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -12,22 +15,24 @@ import java.util.NoSuchElementException;
  * @since 04.06.2018
  * @param <E> type parameter
  */
+@ThreadSafe
 public class DynamicArray<E> implements Iterable<E> {
 
     /** Dynamic array container field.*/
+    @GuardedBy("this")
     private Object[] container;
 
     /** Current array index.*/
     private int index = 0;
 
     /** Size of the container elements.*/
-    private int size = 5;
+    private final int size = 5;
 
     /** Container modification counter.*/
     private int modCount = 0;
 
     /**
-     * DynamciArray class constructor.
+     * DynamicArray class constructor.
      */
     public DynamicArray() {
         this.container = new Object[this.size];
@@ -37,7 +42,7 @@ public class DynamicArray<E> implements Iterable<E> {
      * Method to add new element to container.
      * @param value value of new element
      */
-    public void add(E value) {
+    public synchronized void add(E value) {
         if (this.index <= this.size - 1) {
             this.container[index++] = value;
         } else {
@@ -52,7 +57,7 @@ public class DynamicArray<E> implements Iterable<E> {
      * @param value to check
      * @return result true or false
      */
-    public boolean contains(E value) {
+    public synchronized boolean contains(E value) {
         boolean result = false;
         for (int i = 0; i < this.size; i++) {
             if (value.equals(this.container[i])) {
@@ -68,23 +73,23 @@ public class DynamicArray<E> implements Iterable<E> {
      * @param index index of array element to get
      * @return element
      */
-    public E get(int index) {
+    @SuppressWarnings("unchecked")
+    public synchronized E get(int index) {
         return (E) this.container[index];
     }
 
     @Override
-    public Iterator<E> iterator() {
-        return new IteratorRealise<>(this.modCount);
+    public synchronized Iterator<E> iterator() {
+        return new IteratorRealise(this.modCount);
     }
 
     /**
      * Class IteratorRealise to implement Iterator.
-     * @param <E> type parameter
      */
-    public class IteratorRealise<E> implements Iterator<E> {
+    public class IteratorRealise implements Iterator<E> {
 
         /** Saved value of the container modification operation counter.*/
-        private int expectedModCount;
+        private final int expectedModCount;
 
         /** Iterator index.*/
         private int itrIndex = 0;
@@ -106,7 +111,7 @@ public class DynamicArray<E> implements Iterable<E> {
          */
         @Override
         public boolean hasNext() {
-            return this.itrIndex < index ? true : false;
+            return this.itrIndex < index;
         }
 
         /**
@@ -117,14 +122,17 @@ public class DynamicArray<E> implements Iterable<E> {
          * @throws ConcurrentModificationException if the container was modified
          */
         @Override
+        @SuppressWarnings("unchecked")
         public E next() {
-            if (this.expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
-            }
-            if (hasNext()) {
-                return (E) container[this.itrIndex++];
-            } else {
-                throw new NoSuchElementException();
+            synchronized (DynamicArray.this) {
+                if (this.expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                if (hasNext()) {
+                    return (E) container[this.itrIndex++];
+                } else {
+                    throw new NoSuchElementException();
+                }
             }
         }
     }
