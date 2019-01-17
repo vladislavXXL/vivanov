@@ -3,6 +3,8 @@ package ru.job4j3.collectionspro.list;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -14,19 +16,23 @@ import static org.hamcrest.core.Is.is;
  */
 public class DynamicArrayThreadSafeTest {
 
+    /** Field DynamicArray instance.*/
+    private DynamicArray<String> array;
+
     /** Field DynamicArray container.*/
-    private static DynamicArrayThreadSafe<String> box;
+    private DynamicArrayThreadSafe<String> box;
 
     /**
      * Block of initialization.
      */
     @Before
     public void setUp() {
-        box = new DynamicArrayThreadSafe<>();
-        box.add("zero");
-        box.add("one");
-        box.add("two");
-        box.add("free");
+        array = new DynamicArray<>();
+        array.add("zero");
+        array.add("one");
+        array.add("two");
+        array.add("free");
+        box = new DynamicArrayThreadSafe<>(array);
     }
 
     /**
@@ -34,8 +40,15 @@ public class DynamicArrayThreadSafeTest {
      */
     @Test
     public void testAddAndGet() {
-        assertThat(box.get(0), is("zero"));
-        assertThat(box.get(3), is("free"));
+        Iterator<String> itr = box.iterator();
+        assertThat(itr.hasNext(), is(true));
+        assertThat(itr.next(), is("zero"));
+        assertThat(itr.hasNext(), is(true));
+        assertThat(itr.next(), is("one"));
+        assertThat(itr.hasNext(), is(true));
+        assertThat(itr.next(), is("two"));
+        assertThat(itr.hasNext(), is(true));
+        assertThat(itr.next(), is("free"));
     }
 
 

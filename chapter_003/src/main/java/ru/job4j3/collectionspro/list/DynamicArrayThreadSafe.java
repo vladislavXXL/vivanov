@@ -13,7 +13,7 @@ import java.util.Iterator;
  * @since 16.01.2019
  */
 @ThreadSafe
-public class DynamicArrayThreadSafe<E> extends DynamicArray<E> {
+public class DynamicArrayThreadSafe<E> implements Iterable<E> {
 
     /** Field DynamicArray instance.*/
     @GuardedBy("this")
@@ -21,9 +21,10 @@ public class DynamicArrayThreadSafe<E> extends DynamicArray<E> {
 
     /**
      * DynamicArrayThreadSafe constructor.
+     * @param array DynamicArray instance
      */
-    public DynamicArrayThreadSafe() {
-        this.array = new DynamicArray<>();
+    public DynamicArrayThreadSafe(DynamicArray<E> array) {
+        this.array = array;
     }
 
     /**
@@ -43,22 +44,5 @@ public class DynamicArrayThreadSafe<E> extends DynamicArray<E> {
         synchronized (this) {
             return this.array;
         }
-    }
-
-    /**
-     * Method to add new element.
-     * @param value value of new element
-     */
-    public synchronized void add(E value) {
-        this.array.add(value);
-    }
-
-    /**
-     * Method to get element by index.
-     * @param index index of array element to get
-     * @return value
-     */
-    public synchronized E get(int index) {
-        return this.array.get(index);
     }
 }
