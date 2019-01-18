@@ -36,10 +36,10 @@ public class DynamicArrayThreadSafeTest {
     }
 
     /**
-     * Test method add() and get().
+     * Test method iterator().
      */
     @Test
-    public void testAddAndGet() {
+    public void testIterator() {
         Iterator<String> itr = box.iterator();
         assertThat(itr.hasNext(), is(true));
         assertThat(itr.next(), is("zero"));
@@ -51,6 +51,30 @@ public class DynamicArrayThreadSafeTest {
         assertThat(itr.next(), is("free"));
     }
 
+    /**
+     * Method to test get() operation.
+     */
+    @Test
+    public void testGet() {
+        assertThat(box.get(0), is("zero"));
+        assertThat(box.get(3), is("free"));
+    }
 
+    /**
+     * Method to test add() operation.
+     */
+    @Test
+    public void testAdd() {
+        box.add("four");
+        assertThat(box.get(4), is("four"));
+    }
 
+    /**
+     * Method to test set() operation.
+     */
+    @Test
+    public void testSet() {
+        assertThat(box.set(4, "five"), is(true));
+        assertThat(box.get(4), is("five"));
+    }
 }

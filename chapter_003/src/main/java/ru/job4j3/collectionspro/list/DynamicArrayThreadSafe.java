@@ -45,4 +45,31 @@ public class DynamicArrayThreadSafe<E> implements Iterable<E> {
             return this.array;
         }
     }
+
+    /**
+     * Method to get element.
+     * @param index index of element
+     * @return element value
+     */
+    public synchronized E get(int index) {
+        return this.array.get(index);
+    }
+
+    /**
+     * Method to add element to array.
+     * @param value element value
+     */
+    public synchronized void add(E value) {
+        this.array.add(value);
+    }
+
+    /**
+     * Method to set value.
+     * @param index index of element
+     * @param value elemnt value
+     * @return result of operation
+     */
+    public synchronized boolean set(int index, E value) {
+        return this.array.set(index, value);
+    }
 }

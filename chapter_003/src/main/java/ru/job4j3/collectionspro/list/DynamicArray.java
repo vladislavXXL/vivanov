@@ -53,6 +53,21 @@ public class DynamicArray<E> implements Iterable<E> {
     }
 
     /**
+     * Method to set value by index.
+     * @param index index
+     * @param value of element
+     * @return result of operation
+     */
+    public synchronized boolean set(int index, E value) {
+        boolean result = false;
+        if (index <= this.index) {
+            this.container[index] = value;
+            result = true;
+        }
+        return result;
+    }
+
+    /**
      * Method to check if element exist in current array.
      * @param value to check
      * @return result true or false
