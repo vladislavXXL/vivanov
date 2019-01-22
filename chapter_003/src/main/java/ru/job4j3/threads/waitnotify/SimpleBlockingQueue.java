@@ -31,6 +31,7 @@ public class SimpleBlockingQueue<T extends Number> {
     /**
      * SimpleBlockingQueue constructor.
      * @param value value
+     * @param capacity size of queue
      */
     public SimpleBlockingQueue(T value, int capacity) {
         this.value = value;
@@ -39,6 +40,7 @@ public class SimpleBlockingQueue<T extends Number> {
 
     /**
      * Method offer().
+     * @throws InterruptedException exception
      */
     public void offer() throws InterruptedException {
         while (true) {
@@ -61,6 +63,7 @@ public class SimpleBlockingQueue<T extends Number> {
     /**
      * Method poll().
      * @return result of operation
+     * @throws InterruptedException exception
      */
     public T poll() throws InterruptedException {
         while (true) {
