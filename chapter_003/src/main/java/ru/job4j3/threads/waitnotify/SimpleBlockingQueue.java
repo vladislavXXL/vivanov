@@ -17,69 +17,53 @@ public class SimpleBlockingQueue<T extends Number> {
 
     /** Field queue.*/
     @GuardedBy("this")
-    private Queue<T> queue = new LinkedList<>();
+    private final Queue<T> queue = new LinkedList<>();
 
     /** Field queue capacity.*/
-    private int capacity;
-
-    /** Field thread.*/
-    private T value;
-
-    /** Field value.*/
-    private static boolean flag = false;
+    private final int capacity;
 
     /**
      * SimpleBlockingQueue constructor.
-     * @param value value
      * @param capacity size of queue
      */
-    public SimpleBlockingQueue(T value, int capacity) {
-        this.value = value;
-        this.capacity = capacity;
+    public SimpleBlockingQueue(int capacity) {
+        this.capacity = capacity - 1;
     }
 
     /**
-     * Method offer().
-     * @throws InterruptedException exception
+     * Method offer() to put into queue.
+     * @param value value to put into queue
      */
-    public void offer() throws InterruptedException {
-        while (true) {
-            synchronized (this) {
-                while (!this.flag) {
-                    if (this.queue.size() == this.capacity) {
-                        System.out.println("Queue is full!");
-                        this.flag = true;
-                        notify();
-                        wait();
-                    }
-                    System.out.printf("Value put in to the queue by Producer: %s\n", value.toString());
-                    this.queue.offer(value);
-                    Thread.sleep(1000);
-                }
+    public synchronized void offer(T value) {
+        this.queue.offer(value);
+        System.out.printf("Added value: %s. Size is: %d\n", value.toString(), this.queue.size());
+        this.notify();
+        while (this.queue.size() > this.capacity) {
+            System.out.printf("Queue is full!\n");
+            try {
+                this.wait();
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
             }
         }
     }
 
     /**
-     * Method poll().
+     * Method poll() to get from queue and delete.
      * @return result of operation
-     * @throws InterruptedException exception
      */
-    public T poll() throws InterruptedException {
-        while (true) {
-            synchronized (this) {
-                while (this.flag) {
-                    if (this.queue.size() == 0) {
-                        System.out.println("Queue is empty!");
-                        this.flag = false;
-                        notify();
-                        wait();
-                    }
-                    T result = this.queue.poll();
-                    System.out.printf("Value deleted from the queue by Consumer: %s.\n\tQueue size is: %d\n", result.toString(), this.queue.size());
-                    Thread.sleep(1000);
-                }
+    public synchronized T poll() {
+        System.out.printf("Inside poll!\n");
+        this.notify();
+        while (this.queue.isEmpty()) {
+            try {
+                this.wait();
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
             }
         }
+        T result = this.queue.poll();
+        System.out.printf("Deleted value is: %s. Size is: %d\n", result.toString(), this.queue.size());
+        return result;
     }
 }
