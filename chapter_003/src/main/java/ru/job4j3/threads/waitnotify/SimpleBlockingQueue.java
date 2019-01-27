@@ -54,7 +54,6 @@ public class SimpleBlockingQueue<T extends Number> {
      */
     public synchronized T poll() {
         System.out.printf("Inside poll!\n");
-        this.notify();
         while (this.queue.isEmpty()) {
             try {
                 this.wait();
@@ -64,6 +63,7 @@ public class SimpleBlockingQueue<T extends Number> {
         }
         T result = this.queue.poll();
         System.out.printf("Deleted value is: %s. Size is: %d\n", result.toString(), this.queue.size());
+        this.notify();
         return result;
     }
 }
