@@ -7,19 +7,23 @@ package ru.job4j3.threads.waitnotify;
  * @since 29.01.2019
  */
 public class ParallelSearch {
+    static boolean flag = false;
     public static void main(String[] args) {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<Integer>(3);
         final Thread consumer = new Thread(() -> {
-            while (true) {
+            while (!flag) {
                 try {
                     System.out.println(queue.poll());
-                    throw new InterruptedException();
+                    if (queue.getSize() == 0) {
+                        throw new InterruptedException();
+                    }
                 } catch (Exception e) {
                     System.out.println("Interrupted");
-                    e.printStackTrace();
-                    if (queue.getSize() == 0) {
-                        Thread.currentThread().interrupt();
-                    }
+                    //e.printStackTrace();
+                    //if (queue.getSize() == 0 && Thread.currentThread().isInterrupted()) {
+                        flag = true;
+                        //Thread.currentThread().interrupt();
+                    //}
                 }
             }
         });
@@ -32,11 +36,17 @@ public class ParallelSearch {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                flag = false;
             }
-            if (consumer.isInterrupted()) {
+
+
+/*
+            if (Thread.interrupted()) {
                 System.out.println("Consumer interrupted");
                 Thread.currentThread().interrupt();
             }
+*/
+
 
         });
         producer.start();
