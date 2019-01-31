@@ -13,15 +13,18 @@ public class ParallelSearch {
             while (true) {
                 try {
                     System.out.println(queue.poll());
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
+                    throw new InterruptedException();
+                } catch (Exception e) {
+                    System.out.println("Interrupted");
                     e.printStackTrace();
-                    Thread.currentThread().interrupt();
+                    if (queue.getSize() == 0) {
+                        Thread.currentThread().interrupt();
+                    }
                 }
             }
         });
         consumer.start();
-        new Thread(() -> {
+        Thread producer = new Thread(() -> {
             for (int index = 0; index != 3; index++) {
                 queue.offer(index);
                 try {
@@ -30,7 +33,13 @@ public class ParallelSearch {
                     e.printStackTrace();
                 }
             }
-        }).start();
+            if (consumer.isInterrupted()) {
+                System.out.println("Consumer interrupted");
+                Thread.currentThread().interrupt();
+            }
+
+        });
+        producer.start();
     }
 
 }

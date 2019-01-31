@@ -30,6 +30,10 @@ public class SimpleBlockingQueue<T extends Number> {
         this.capacity = capacity - 1;
     }
 
+    public int getSize() {
+        return this.queue.size();
+    }
+
     /**
      * Method offer() to put into queue.
      * @param value value to put into queue
@@ -52,7 +56,7 @@ public class SimpleBlockingQueue<T extends Number> {
      * Method poll() to get from queue and delete.
      * @return result of operation
      */
-    public synchronized T poll() {
+    public synchronized T poll() throws InterruptedException {
         System.out.printf("Inside poll!\n");
         while (this.queue.isEmpty()) {
             try {

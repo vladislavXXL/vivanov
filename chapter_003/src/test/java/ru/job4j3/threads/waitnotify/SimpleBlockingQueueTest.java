@@ -23,7 +23,11 @@ public class SimpleBlockingQueueTest {
         });
         Thread t2 = new Thread(() -> {
             for (int i = 1; i < 101; i++) {
-                queue.poll();
+                try {
+                    queue.poll();
+                } catch (InterruptedException ie) {
+                    ie.printStackTrace();
+                }
             }
         });
         t1.start();
