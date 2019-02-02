@@ -30,6 +30,10 @@ public class SimpleBlockingQueue<T extends Number> {
         this.capacity = capacity - 1;
     }
 
+    /**
+     * Method to get queue size.
+     * @return result size
+     */
     public int getSize() {
         return this.queue.size();
     }

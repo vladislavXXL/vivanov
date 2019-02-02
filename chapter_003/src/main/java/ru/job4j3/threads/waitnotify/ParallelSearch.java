@@ -2,11 +2,15 @@ package ru.job4j3.threads.waitnotify;
 
 /**
  * Class ParallelSearch.
- * @uathor v.ivanov
+ * @author v.ivanov
  * @version 1
  * @since 29.01.2019
  */
 public class ParallelSearch {
+    /**
+     * Main method.
+     * @param args params
+     */
     public static void main(String[] args) {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<Integer>(3);
         final Thread consumer = new Thread(() -> {
