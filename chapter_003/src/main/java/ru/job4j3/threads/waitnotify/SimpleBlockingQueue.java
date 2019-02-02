@@ -56,7 +56,7 @@ public class SimpleBlockingQueue<T extends Number> {
      * Method poll() to get from queue and delete.
      * @return result of operation
      */
-    public synchronized T poll() throws InterruptedException {
+    public synchronized T poll() {
         System.out.printf("Inside poll!\n");
         while (this.queue.isEmpty()) {
             try {
