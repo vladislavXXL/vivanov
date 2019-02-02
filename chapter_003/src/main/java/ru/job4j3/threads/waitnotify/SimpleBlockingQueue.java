@@ -30,6 +30,10 @@ public class SimpleBlockingQueue<T extends Number> {
         this.capacity = capacity - 1;
     }
 
+    public int getSize() {
+        return this.queue.size();
+    }
+
     /**
      * Method offer() to put into queue.
      * @param value value to put into queue
