@@ -12,7 +12,7 @@ public class ParallelSearch {
      * @param args params
      */
     public static void main(String[] args) {
-        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<Integer>(3);
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<Integer>(10);
         final Thread consumer = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 System.out.println(queue.poll());
@@ -20,9 +20,9 @@ public class ParallelSearch {
         });
         consumer.start();
         new Thread(() -> {
-            for (int index = 0; index != 3; index++) {
+            for (int index = 0; index != queue.getCapacity(); index++) {
                 queue.offer(index);
-                if (index == 2) {
+                if (index == queue.getCapacity() - 1) {
                     consumer.interrupt();
                 }
                 try {

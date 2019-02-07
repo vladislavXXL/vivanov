@@ -27,15 +27,15 @@ public class SimpleBlockingQueue<T extends Number> {
      * @param capacity size of queue
      */
     public SimpleBlockingQueue(int capacity) {
-        this.capacity = capacity - 1;
+        this.capacity = capacity;
     }
 
     /**
-     * Method to get queue size.
+     * Method to get queue capacity.
      * @return result size
      */
-    public int getSize() {
-        return this.queue.size();
+    public int getCapacity() {
+        return this.capacity;
     }
 
     /**
@@ -46,7 +46,7 @@ public class SimpleBlockingQueue<T extends Number> {
         this.queue.offer(value);
         System.out.printf("Added value: %s. Size is: %d\n", value.toString(), this.queue.size());
         this.notify();
-        while (this.queue.size() > this.capacity) {
+        while (this.queue.size() > this.capacity - 1) {
             System.out.printf("Queue is full!\n");
             try {
                 this.wait();
