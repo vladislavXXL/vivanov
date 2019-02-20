@@ -39,6 +39,14 @@ public class SimpleBlockingQueue<T extends Number> {
     }
 
     /**
+     * Method to check if queue is empty.
+     * @return result true or false
+     */
+    public boolean isEmpty() {
+        return this.queue.size() == 0;
+    }
+
+    /**
      * Method offer() to put into queue.
      * @param value value to put into queue
      */
