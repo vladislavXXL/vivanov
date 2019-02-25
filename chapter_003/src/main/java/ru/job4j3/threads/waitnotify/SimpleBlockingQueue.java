@@ -74,7 +74,7 @@ public class SimpleBlockingQueue<T extends Number> {
             try {
                 this.wait();
             } catch (InterruptedException ie) {
-                ie.printStackTrace();
+                Thread.interrupted();
             }
         }
         T result = this.queue.poll();
