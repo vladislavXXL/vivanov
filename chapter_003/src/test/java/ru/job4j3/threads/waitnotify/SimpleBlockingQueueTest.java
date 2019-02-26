@@ -15,7 +15,7 @@ public class SimpleBlockingQueueTest {
      */
     @Test
     public void test() {
-        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(3);
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(10);
         Thread t1 = new Thread(() -> {
             for (int i = 1; i < 101; i++) {
                 queue.offer(i);
@@ -23,7 +23,11 @@ public class SimpleBlockingQueueTest {
         });
         Thread t2 = new Thread(() -> {
             for (int i = 1; i < 101; i++) {
-                queue.poll();
+                try {
+                    queue.poll();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         t1.start();
