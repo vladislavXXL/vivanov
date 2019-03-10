@@ -13,7 +13,7 @@ import java.util.Queue;
  * @param <T> parametrized type parameter
  */
 @ThreadSafe
-public class SimpleBlockingQueue<T extends Number> {
+public class SimpleBlockingQueue<T> {
 
     /** Field queue.*/
     @GuardedBy("this")
