@@ -40,9 +40,9 @@ public class EmailNotification {
 
     /**
      * Method to send email.
-     * @param subject
-     * @param body
-     * @param email
+     * @param subject subject of email
+     * @param body body of email
+     * @param email email value
      */
     public void send(String subject, String body, String email) {
 
