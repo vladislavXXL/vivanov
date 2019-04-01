@@ -4,3 +4,4 @@
 # http://job4j.ru/
 
 In this repository performed some cases realised on java.
+All work was done in the github branches.
