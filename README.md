@@ -4,3 +4,4 @@
 # http://job4j.ru/
 
 In this repository performed some cases realised on java.
+Merging fixed changes
