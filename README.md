@@ -6,3 +6,4 @@
 In this repository performed some cases realised on java.
 Merging fixed changes
 All work was done in the github branches.
+Creating new branch via IDEA.
