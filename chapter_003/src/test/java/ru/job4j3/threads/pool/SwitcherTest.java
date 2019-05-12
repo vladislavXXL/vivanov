@@ -2,11 +2,7 @@ package ru.job4j3.threads.pool;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertThat;
@@ -46,40 +42,39 @@ public class SwitcherTest {
      */
     @Test
     public void checkSwitcherAddToStringWithTwoThreads() {
-        ExecutorService executor = Executors.newFixedThreadPool(2);
         Semaphore sem1 = new Semaphore(0);
         Semaphore sem2 = new Semaphore(1);
         final int CYCLE = 3;
-        Runnable task1 = () -> {
-            try {
-                sem2.acquire();
-            } catch (InterruptedException e) {
-                throw new IllegalStateException(e);
-            }
-            IntStream.range(0, 10).forEach(i -> this.switcher.addToString(1));
-            sem1.release();
-        };
-        Runnable task2 = () -> {
-            try {
-                sem1.acquire();
-            } catch (InterruptedException e) {
-                throw new IllegalStateException(e);
-            }
-            IntStream.range(0, 10).forEach(i -> this.switcher.addToString(2));
-            sem2.release();
-        };
-        IntStream.range(0, CYCLE).forEach(i -> {
-            executor.submit(task1);
-            executor.submit(task2);
+        Thread t1 = new Thread(() -> {
+            IntStream.range(0, CYCLE).forEach(i -> {
+                try {
+                    sem2.acquire();
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException(e);
+                }
+                IntStream.range(0, 10).forEach(i2 -> this.switcher.addToString(1));
+                sem1.release();
+            });
         });
+        Thread t2 = new Thread(() -> {
+            IntStream.range(0, CYCLE).forEach(i -> {
+                try {
+                    sem1.acquire();
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException(e);
+                }
+                IntStream.range(0, 10).forEach(i2 -> this.switcher.addToString(2));
+                sem2.release();
+            });
+        });
+        t1.start();
+        t2.start();
         try {
-            executor.shutdown();
-            executor.awaitTermination(10, TimeUnit.SECONDS);
+            t1.join();
+            t2.join();
         } catch (InterruptedException e) {
-            System.err.println("Termination interrupted");
-        } finally {
-            executor.shutdown();
+            e.printStackTrace();
         }
-        assertThat(switcher.getValue(), is("String line with number 111111111122222222221111111111222222222211111111112222222222"));
+        assertThat(this.switcher.getValue(), is("String line with number 111111111122222222221111111111222222222211111111112222222222"));
     }
 }
