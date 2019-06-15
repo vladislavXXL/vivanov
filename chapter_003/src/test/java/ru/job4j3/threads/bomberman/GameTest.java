@@ -19,7 +19,7 @@ public class GameTest {
         Hero bMan = new Hero(new Cell(0, 0), "Bomberman");
         new Game(5, bMan).runGame();
         try {
-            TimeUnit.SECONDS.sleep(10);
+            TimeUnit.SECONDS.sleep(7);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

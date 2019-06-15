@@ -37,19 +37,23 @@ public class Game {
         ReentrantLock[][] locks = this.board.getBoard();
         Cell source = this.bomberman.getPosition();
         new Thread(() -> {
-            while (true) {
-                try {
-                    boolean isBusy = locks[source.getX()][source.getY()].tryLock(500, TimeUnit.MILLISECONDS);
-                    if (isBusy) {
-                        boolean isMoved;
-                        do {
-                            isMoved = this.board.move(source, generateDest());
-                        } while (!isMoved);
-                    }
+            try {
+                int bomberSteps = 5;
+                locks[source.getX()][source.getY()].lock();
+                while (bomberSteps > 0) {
+                    boolean isMoved;
+                    do {
+                        Cell dest = generateDest();
+                        isMoved = this.board.move(this.bomberman.getPosition(), dest);
+                        if (isMoved) {
+                            this.bomberman.setPosition(dest);
+                        }
+                    } while (!isMoved);
                     TimeUnit.MILLISECONDS.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    bomberSteps--;
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }).start();
     }
@@ -71,5 +75,16 @@ public class Game {
             }
         }
         return result;
+    }
+
+    /**
+     * Method to print out locked and free cells.
+     */
+    public void getLocked() {
+        for (int i = 0; i < this.board.getSize(); i++) {
+            for (int j = 0; j < this.board.getSize(); j++) {
+                System.out.format("%d: %d; Is locked: %b\n", i, j, this.board.getBoard()[i][j].isLocked());
+            }
+        }
     }
 }

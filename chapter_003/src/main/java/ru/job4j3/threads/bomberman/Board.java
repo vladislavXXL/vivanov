@@ -39,7 +39,7 @@ public class Board {
      * @return ReentrantLock[][] instance
      */
     public ReentrantLock[][] getBoard() {
-        return board;
+        return this.board;
     }
 
     /**
@@ -47,7 +47,7 @@ public class Board {
      * @return int board size
      */
     public int getSize() {
-        return size;
+        return this.size;
     }
 
     /**
@@ -64,12 +64,9 @@ public class Board {
         System.out.println("Destination cell is locked: " + this.board[dest.getX()][dest.getY()].isLocked());
         if (isDest) {
             this.board[source.getX()][source.getY()].unlock();
-            System.out.println("Source cell is locked: " + this.board[source.getX()][source.getY()].isLocked());
+            System.out.println("Source cell after, is locked: " + this.board[source.getX()][source.getY()].isLocked());
             System.out.println("Moved to " + dest);
-            Thread.sleep(1000);
         }
         return isDest;
     }
-
-
 }
