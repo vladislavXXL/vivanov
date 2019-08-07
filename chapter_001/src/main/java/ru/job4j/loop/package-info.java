@@ -5,4 +5,4 @@
 * @since 13.03.2017
 */
 
-package ru.job4j;
+package ru.job4j.loop;
