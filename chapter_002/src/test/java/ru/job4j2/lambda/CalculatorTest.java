@@ -30,4 +30,18 @@ public class CalculatorTest {
         assertThat(buffer, is(Arrays.asList(1d, 2d, 3d)));
     }
 
+    /**
+     * Method to check class Calculator with lambda via method link.
+     */
+    @Test
+    public void whenAdd1Until3ViaMethodLink() {
+        Calculator calc = new Calculator();
+        List<Double> buffer = new ArrayList<>();
+        calc.multiple(
+                0, 3, 1,
+                MathUtil::add,
+                buffer::add
+        );
+        assertThat(buffer, is(Arrays.asList(1d, 2d, 3d)));
+    }
 }
