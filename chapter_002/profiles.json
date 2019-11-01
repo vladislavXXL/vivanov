@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Ulyanov Fedor",
+    "address": {
+      "city": "Moscow",
+      "street": "Tverskaya",
+      "home": "3",
+      "apartment": "12"
+    }
+  },
+  {
+    "name": "Petrov Alexandr",
+    "address": {
+      "city": "Moscow",
+      "street": "Noviy Arbat",
+      "home": "15",
+      "apartment": "21"
+    }
+  },
+  {
+    "name": "Ignatov Mikhail",
+    "address": {
+      "city": "Novosibirsk",
+      "street": "Tulskaya",
+      "home": "21",
+      "apartment": "123"
+    }
+  }
+]
