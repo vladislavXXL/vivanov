@@ -1,14 +1,5 @@
 [
   {
-    "name": "Ulyanov Fedor",
-    "address": {
-      "city": "Moscow",
-      "street": "Tverskaya",
-      "home": "3",
-      "apartment": "12"
-    }
-  },
-  {
     "name": "Petrov Alexandr",
     "address": {
       "city": "Moscow",
@@ -18,12 +9,66 @@
     }
   },
   {
+    "name": "Ulyanova Anna",
+    "address": {
+      "city": "Moscow",
+      "street": "Tverskaya",
+      "home": "3",
+      "apartment": "12"
+    }
+  },
+  {
+    "name": "Usov Boris",
+    "address": {
+      "city": "Anapa",
+      "street": "Moskovskaya",
+      "home": "5",
+      "apartment": "7"
+    }
+  },
+  {
     "name": "Ignatov Mikhail",
     "address": {
       "city": "Novosibirsk",
       "street": "Tulskaya",
       "home": "21",
       "apartment": "123"
+    }
+  },
+  {
+    "name": "Ulyanov Anatoliy",
+    "address": {
+      "city": "Voronezh",
+      "street": "Tulskaya",
+      "home": "23",
+      "apartment": "31"
+    }
+  },
+  {
+    "name": "Efremov Igor",
+    "address": {
+      "city": "Anapa",
+      "street": "Novorossiyskaya",
+      "home": "1",
+      "apartment": "2"
+    }
+  },
+  {
+    "name": "Golovina Angela",
+    "address": {
+      "city": "Anapa",
+      "street": "Novorossiyskaya",
+      "home": "1",
+      "apartment": "2"
+    }
+  },
+  {
+    "name": "Ulyanov Fedor",
+    "address": {
+      "city": "Moscow",
+      "street": "Tverskaya",
+      "home": "3",
+      "apartment": "12"
     }
   }
 ]

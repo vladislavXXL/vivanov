@@ -30,6 +30,7 @@ public class ProfilesTest {
 
     /**
      * Initialization method.
+     *
      * @throws FileNotFoundException exception if file not found
      */
     @BeforeClass
@@ -46,10 +47,14 @@ public class ProfilesTest {
      */
     @Test
     public void checkCollectMethod() {
-        List<Address> expectedAddresses = new ArrayList<>();
-        for (Profile profile: profilesList) {
-            expectedAddresses.add(profile.getAddress());
-        }
+        List<Address> expectedAddresses = Arrays.asList(
+                new Address("Anapa", "Moskovskaya", 5, 7),
+                new Address("Anapa", "Novorossiyskaya", 1, 2),
+                new Address("Moscow", "Noviy Arbat", 15, 21),
+                new Address("Moscow", "Tverskaya",  3, 12),
+                new Address("Novosibirsk", "Tulskaya", 21, 123),
+                new Address("Voronezh", "Tulskaya", 23, 31)
+        );
         assertThat(profiles.collect(profilesList), is(expectedAddresses));
     }
 }

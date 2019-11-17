@@ -25,7 +25,9 @@ public class CountFunctionInRange {
         List<Double> result = new ArrayList<>();
         IntStream.range(start, end).forEach(i -> {
                 Double res = func.apply((double) i);
-                result.add(Double.parseDouble(String.format("%.3f", res)));
+                result.add(Double.valueOf(
+                        String.format("%.3f", res).replace(",", ".")
+                ));
         });
         return result;
     }
