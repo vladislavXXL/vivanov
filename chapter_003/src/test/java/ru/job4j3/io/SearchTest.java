@@ -5,6 +5,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -20,6 +21,7 @@ import static org.hamcrest.core.Is.is;
  * @version 1
  * @since 07.09.2019
  */
+@Ignore
 public class SearchTest {
     /** Field Search class instance.*/
     private static Search search;
@@ -101,7 +103,7 @@ public class SearchTest {
      */
     @AfterClass
     public static void deleteCreated() throws IOException {
-        deleteDirectory(PATH + MY);
+        deleteDirectory(PATH + SEP + MY);
     }
 
     /**
