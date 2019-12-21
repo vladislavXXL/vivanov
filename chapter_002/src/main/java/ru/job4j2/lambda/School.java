@@ -1,6 +1,7 @@
 package ru.job4j2.lambda;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -24,5 +25,19 @@ public class School {
         return students.stream()
                 .filter(predicate)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Method to convert list of student to map with name and student instance.
+     *
+     * @param   students list of students
+     * @return  result map
+     */
+    Map<String, Student> listToMap(List<Student> students) {
+        return students.stream()
+                .collect(Collectors.toMap(
+                        Student::getName,
+                        e -> e
+                ));
     }
 }

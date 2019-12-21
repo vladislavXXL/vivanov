@@ -29,6 +29,15 @@ public class Student {
     }
 
     /**
+     * Getter for name field.
+     *
+     * @return name field value
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
      * Getter for score field.
      *
      * @return score field value
@@ -52,7 +61,8 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-        return score == student.score && Objects.equals(name, student.name);
+        return score == student.score
+                && name.equals(student.name);
     }
 
     /**
