@@ -19,10 +19,17 @@ public class UsageLog4j {
      * @param args args
      */
     public static void main(String[] args) {
-        LOG.trace("Trace message");
-        LOG.debug("Debug message");
-        LOG.info("Info message");
-        LOG.warn("Warning message");
-        LOG.error("Error message");
+        byte house = 125;
+        short id = 32000;
+        int age = 39;
+        long index = 1111111111111111L;
+        double height = 185.0;
+        float weight = 85.0f;
+        boolean isValue = true;
+        char abc = 'c';
+        LOG.debug(
+                "Primitive types byte: {}, short: {}, int: {}, long: {}, double: {}, float: {}, boolean: {}, char: {}",
+                house, id, age, index, height, weight, isValue, abc
+        );
     }
 }
