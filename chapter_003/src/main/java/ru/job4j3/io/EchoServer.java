@@ -1,5 +1,8 @@
 package ru.job4j3.io;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,6 +19,9 @@ import java.util.function.Consumer;
  * @since 21.03.2020
  */
 public class EchoServer {
+
+    /** Logger instance.*/
+    private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
 
     /**
      * Enum MSG with request part and corresponding answer.
@@ -50,7 +56,7 @@ public class EchoServer {
      * @param args args
      * @throws IOException throws exception
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             boolean isClosed = false;
             Message msg = new Message();
@@ -85,6 +91,8 @@ public class EchoServer {
                     }
                 }
             }
+        } catch (IOException e) {
+            LOG.error("IOException error", e);
         }
     }
 
