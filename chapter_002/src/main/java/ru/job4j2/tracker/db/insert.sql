@@ -1,7 +1,7 @@
-insert into items(name) values('Apple');
-insert into items(name) values('Orange');
-insert into items(name) values('Pear');
-insert into items(name) values('Banana');
-insert into items(name) values('Cucumber');
-insert into items(name) values('Eggplant');
-insert into items(name) values('Onion');
+insert into items(name, description, created) values('Apple', 'apple', now());
+insert into items(name, description, created) values('Orange', 'orange', now());
+insert into items(name, description, created) values('Pear', 'pear', now());
+insert into items(name, description, created) values('Banana', 'banana', now());
+insert into items(name, description, created) values('Cucumber', 'cucmber', now());
+insert into items(name, description, created) values('Eggplant', 'eggplant', now());
+insert into items(name, description, created) values('Onion', 'onion', now());

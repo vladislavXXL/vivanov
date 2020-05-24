@@ -34,10 +34,10 @@ public abstract class BaseAction implements UserAction {
     /**
      * Method execute to run action.
      * @param input   - instance of class Input.
-     * @param tracker - instance of class Tracker.
+     * @param store - implementation of interface Store
      */
     @Override
-    public abstract void execute(Input input, Tracker tracker);
+    public abstract void execute(Input input, Store store);
 
     /**
      * Method info showing description of the operation to user.

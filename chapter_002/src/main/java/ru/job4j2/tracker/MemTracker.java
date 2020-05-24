@@ -9,7 +9,7 @@ import java.util.List;
  * @version 1
  * @since 22.05.17
  */
-public class Tracker {
+public class MemTracker {
 
     /** Field items that belongs to tracker.*/
     private List<Item> items = new ArrayList<Item>();

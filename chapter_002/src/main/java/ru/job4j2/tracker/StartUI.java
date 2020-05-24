@@ -12,23 +12,24 @@ public class StartUI {
     private Input input;
 
     /** field tracker. */
-    private Tracker tracker;
+    private Store store;
 
     /**
      * @param input - instance of class Input.
      * Class StartUI constructor.
-     * @param tracker - instance of class Tracker.
+     * @param store - instance of class SqlTracker.
      */
-    public StartUI(Input input, Tracker tracker) {
+    public StartUI(Input input, Store store) {
         this.input = input;
-        this.tracker = tracker;
+        this.store = store;
     }
 
     /**
      * Method init to run class StartUI - main menu.
      */
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        MenuTracker menu = new MenuTracker(this.input, this.store);
+        this.store.init();
         menu.fillActions();
 
         /**
@@ -54,7 +55,7 @@ public class StartUI {
         do {
             menu.show();
             menu.select(input.ask("Select: ", menu.getRanges()));
-        } while (!"y".equals(this.input.ask("Exit? (y): ")));
+        } while (!"y".equals(this.input.ask("Exit? (y/n): ")));
     }
 
     /**
@@ -63,7 +64,10 @@ public class StartUI {
      */
     public static void main(String[] args) {
         Input input = new ValidateInput();
-        Tracker tracker = new Tracker();
-        new StartUI(input, tracker).init();
+        try (Store store = new SqlTracker()) {
+            new StartUI(input, store).init();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

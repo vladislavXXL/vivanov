@@ -18,9 +18,9 @@ public interface UserAction {
     /**
      * Method execute to run action.
      * @param input - instance of class Input.
-     * @param tracker - instance of class Tracker.
+     * @param store - implementation of interface Store
      */
-    void execute(Input input, Tracker tracker);
+    void execute(Input input, Store store);
 
     /**
      * Method info showing description of the operation to user.
