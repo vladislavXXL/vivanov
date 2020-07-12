@@ -1,5 +1,7 @@
 package ru.job4j2.tracker;
 
+import java.util.Objects;
+
 /**
  * Class Item.
  * @author vivanov
@@ -95,5 +97,23 @@ public class Item {
      */
     public void setCreated(long created) {
         this.created = created;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return Objects.equals(name, item.name)
+                && Objects.equals(desc, item.desc);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, desc);
     }
 }

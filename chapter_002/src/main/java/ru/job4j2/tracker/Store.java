@@ -1,5 +1,6 @@
 package ru.job4j2.tracker;
 
+import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -12,8 +13,9 @@ public interface Store extends AutoCloseable {
 
     /**
      * Method to initialize jdbc.
+     * @return connection object
      */
-    void init();
+    Connection init();
 
     /**
      * Method to add new item into database.

@@ -30,15 +30,30 @@ public class SqlTracker implements Store {
     private Connection cn;
 
     /**
+     * SqlTracker class constructor.
+     * @param connection Connection class instance
+     */
+    public SqlTracker(Connection connection) {
+        this.cn = connection;
+    }
+
+    /**
+     * Constructor by default.
+     */
+    public SqlTracker() {
+
+    }
+
+    /**
      * Method to initialize jdbc.
      */
     @Override
-    public void init() {
+    public Connection init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            cn = DriverManager.getConnection(
+            return DriverManager.getConnection(
                     config.getProperty("url"),
                     config.getProperty("username"),
                     config.getProperty("password")
